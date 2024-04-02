@@ -1,8 +1,9 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Tabs } from "expo-router";
+import { Link, Redirect, Tabs } from "expo-router";
 import React from "react";
 import { Pressable } from "react-native";
 
+import { useSession } from "@/components/SessionProviderContext";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 import { useColorScheme } from "@/components/useColorScheme";
 import Colors from "@/constants/Colors";
@@ -16,7 +17,16 @@ function TabBarIcon(props: {
 }
 
 export default function TabLayout() {
+  const { session, isLoading } = useSession();
   const colorScheme = useColorScheme();
+
+  // Only require authentication within the (app) group's layout as users
+  // need to be able to access the (auth) group and sign in again.
+  if (!session) {
+    // On web, static rendering will stop here as the user is not authenticated
+    // in the headless Node process that the pages are rendered in.
+    return <Redirect href="/sign-in" />;
+  }
 
   return (
     <Tabs
