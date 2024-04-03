@@ -1,68 +1,83 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Redirect, Tabs } from "expo-router";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { Text, useTheme } from "@ui-kitten/components";
+import { Redirect, Tabs } from "expo-router";
 import React from "react";
-import { Pressable } from "react-native";
+import { StyleSheet, View } from "react-native";
 
-import { useSession } from "@/components/SessionProviderContext";
-import { useClientOnlyValue } from "@/components/useClientOnlyValue";
-import { useColorScheme } from "@/components/useColorScheme";
-import Colors from "@/constants/Colors";
+import { useSession } from "@/components";
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
+  name: React.ComponentProps<typeof MaterialIcons>["name"];
   color: string;
 }) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
+  return <MaterialIcons size={28} style={{ marginBottom: -3 }} {...props} />;
 }
 
 export default function TabLayout() {
+  const theme = useTheme();
   const { session, isLoading } = useSession();
-  const colorScheme = useColorScheme();
 
-  // Only require authentication within the (app) group's layout as users
+  // You can keep the splash screen open, or render a loading screen like we do here.
+  if (isLoading) {
+    return <Text>Loading...</Text>;
+  }
+
+  // Only require authentication within the (tabs) group's layout as users
   // need to be able to access the (auth) group and sign in again.
   if (!session) {
     // On web, static rendering will stop here as the user is not authenticated
     // in the headless Node process that the pages are rendered in.
-    return <Redirect href="/sign-in" />;
+    return <Redirect href="/auth" />;
   }
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
+        tabBarActiveTintColor: theme["color-primary-default"],
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? "light"].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+          title: "Inicio",
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="fitness"
+        options={{
+          title: "Ejercicio",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="fitness-center" color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="diet"
         options={{
-          title: "Tab Two",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "Nutrición",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="restaurant" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="homework"
+        options={{
+          title: "Tareas",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="task-alt" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="account"
+        options={{
+          title: "Mi cuenta",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="account-circle" color={color} />
+          ),
         }}
       />
     </Tabs>

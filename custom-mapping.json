@@ -1,0 +1,28 @@
+{
+  "strict": {
+    "text-font-family": "Manrope-Regular",
+    "text-heading-1-font-size": 36,
+    "text-heading-1-font-family": "Gobold-Italic",
+    "text-heading-2-font-family": "Manrope-SemiBold"
+  },
+  "components": {
+    "Button": {
+      "appearances": {
+        "filled": {
+          "mapping": {
+            "textFontFamily": "Manrope-SemiBold"
+          }
+        }
+      }
+    },
+    "Tab": {
+      "appearances": {
+        "default": {
+          "mapping": {
+            "textFontFamily": "Manrope-SemiBold"
+          }
+        }
+      }
+    }
+  }
+}
