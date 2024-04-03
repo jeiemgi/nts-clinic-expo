@@ -1,14 +1,15 @@
-import { Input, Tab, TabView, Layout } from "@ui-kitten/components";
 import { router } from "expo-router";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, useWindowDimensions, View } from "react-native";
+import { TextInput } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { TabView, SceneMap } from "react-native-tab-view";
 
 import { Screen } from "@/components";
 import Button from "@/components/Button";
 import PasswordInput from "@/components/PasswordInput";
 import { useSession } from "@/components/SessionProviderContext";
-import NTSLogo from "@/svg/nts-logo";
+import NTSLogo from "@/svg/NTSLogo";
 
 function LogIn() {
   const { signIn } = useSession();
@@ -17,8 +18,7 @@ function LogIn() {
 
   return (
     <Screen py={8} safeAreaView={false}>
-      <Input
-        size="large"
+      <TextInput
         value={email}
         autoCorrect={false}
         autoComplete="email"
@@ -28,7 +28,6 @@ function LogIn() {
         onChangeText={(nextValue) => setEmail(nextValue)}
       />
       <PasswordInput
-        size="large"
         value={password}
         style={{ marginBottom: 24 }}
         placeholder="Contraseña"
@@ -56,8 +55,7 @@ function SignUp() {
 
   return (
     <Screen py={8} safeAreaView={false}>
-      <Input
-        size="large"
+      <TextInput
         value={email}
         autoCorrect={false}
         autoComplete="email"
@@ -67,7 +65,6 @@ function SignUp() {
         onChangeText={(nextValue) => setEmail(nextValue)}
       />
       <PasswordInput
-        size="large"
         value={password}
         style={{ marginBottom: 24 }}
         placeholder="Contraseña"
@@ -88,27 +85,29 @@ function SignUp() {
   );
 }
 
-const AuthRoot = (marginVertical: number = 24) => {
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+const renderScene = SceneMap({
+  first: LogIn,
+  second: SignUp,
+});
 
+const AuthRoot = (marginVertical: number = 24) => {
+  const layout = useWindowDimensions();
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: "first", title: "Iniciar Sesión" },
+    { key: "second", title: "Registrarse" },
+  ]);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.header}>
         <NTSLogo />
       </View>
-
       <TabView
-        style={{ flex: 1 }}
-        selectedIndex={selectedIndex}
-        onSelect={(index) => setSelectedIndex(index)}
-      >
-        <Tab style={styles.tab} title="Regístrate">
-          <SignUp />
-        </Tab>
-        <Tab style={styles.tab} title="Iniciar Sesión">
-          <LogIn />
-        </Tab>
-      </TabView>
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={{ width: layout.width }}
+      />
     </SafeAreaView>
   );
 };

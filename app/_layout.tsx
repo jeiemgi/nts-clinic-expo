@@ -1,14 +1,14 @@
-import * as eva from "@eva-design/eva";
-import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
-import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import { useFonts } from "expo-font";
 import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import {
+  PaperProvider,
+  MD3LightTheme,
+  configureFonts,
+} from "react-native-paper";
+import { Font } from "react-native-paper/src/types";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-
-import { default as mapping } from "../custom-mapping.json";
-import { default as theme } from "../custom-theme.json";
 
 import { SessionProvider } from "@/components/SessionProviderContext";
 
@@ -16,6 +16,21 @@ export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from "expo-router";
+
+const fontConfig = {
+  fontFamily: "Manrope-Regular",
+  displayLarge: {
+    fontFamily: "Gobold-Italic",
+  },
+  displayMedium: {
+    fontFamily: "Manrope-SemiBold",
+  },
+} as const;
+
+const theme = {
+  ...MD3LightTheme,
+  fonts: configureFonts({ config: fontConfig }),
+};
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -50,18 +65,12 @@ export default function RootLayout() {
 function RootLayoutNav() {
   return (
     <>
-      <IconRegistry icons={EvaIconsPack} />
       <SessionProvider>
-        <ApplicationProvider
-          {...eva}
-          // @ts-ignore
-          customMapping={mapping}
-          theme={{ ...eva.light, ...theme }}
-        >
+        <PaperProvider theme={theme}>
           <SafeAreaProvider>
             <Slot />
           </SafeAreaProvider>
-        </ApplicationProvider>
+        </PaperProvider>
       </SessionProvider>
     </>
   );

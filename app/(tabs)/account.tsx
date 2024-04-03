@@ -1,7 +1,9 @@
-import { Layout, Toggle } from "@ui-kitten/components";
 import { useState } from "react";
+import { Switch } from "react-native-paper";
 
-export default function TabOneScreen() {
+import { Screen } from "@/components";
+
+export default function AccountScreen() {
   const [checked, setChecked] = useState(false);
 
   const onCheckedChange = (isChecked: boolean): void => {
@@ -9,10 +11,8 @@ export default function TabOneScreen() {
   };
 
   return (
-    <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Toggle checked={checked} onChange={onCheckedChange}>
-        {`Checked: ${checked}`}
-      </Toggle>
-    </Layout>
+    <Screen style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Switch value={checked} onValueChange={onCheckedChange} />
+    </Screen>
   );
 }

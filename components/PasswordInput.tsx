@@ -1,23 +1,21 @@
-import { Icon, IconProps, Input, InputProps } from "@ui-kitten/components";
 import React from "react";
 import { Pressable } from "react-native";
+import { TextInput, Icon, TextInputProps } from "react-native-paper";
 
-export const PasswordInput = (props: InputProps): React.ReactElement => {
+export const PasswordInput = (props: TextInputProps): React.ReactElement => {
   const [secureTextEntry, setSecureTextEntry] = React.useState(true);
 
   const toggleSecureEntry = (): void => {
     setSecureTextEntry(!secureTextEntry);
   };
 
-  const renderIcon = (iconProps: IconProps): React.ReactElement => (
-    <Pressable onPress={toggleSecureEntry}>
-      <Icon {...iconProps} name={secureTextEntry ? "eye-off" : "eye"} />
-    </Pressable>
-  );
-
   return (
-    <Input
-      accessoryRight={renderIcon}
+    <TextInput
+      right={
+        <Pressable onPress={toggleSecureEntry}>
+          <Icon size={24} source={secureTextEntry ? "eye-off" : "eye"} />
+        </Pressable>
+      }
       secureTextEntry={secureTextEntry}
       {...props}
     />

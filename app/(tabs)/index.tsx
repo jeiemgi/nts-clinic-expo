@@ -1,7 +1,4 @@
-import { Layout, Text, Datepicker, Divider } from "@ui-kitten/components";
-import { useState } from "react";
-import { View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Divider, Text } from "react-native-paper";
 
 import { Button, Screen, useSession } from "@/components";
 
@@ -10,21 +7,22 @@ export default function TabOneScreen() {
 
   return (
     <Screen>
-      <Text category="h1">Lorem Ipsum</Text>
-      <Text category="h2">Lorem Ipsum</Text>
-      <Text category="h3">Lorem Ipsum</Text>
-      <Text category="h4">Lorem Ipsum</Text>
-      <Text category="h5">Lorem Ipsum</Text>
-      <Text category="h6">Lorem Ipsum</Text>
-
+      <Text variant="displayLarge">Display Large</Text>
+      <Text variant="displayMedium">Display Medium</Text>
+      <Text variant="displaySmall">Display small</Text>
       <Divider style={{ marginVertical: 24 }} />
 
-      <Text category="s1">Lorem Ipsum</Text>
-      <Text category="s2">Lorem Ipsum</Text>
-
+      <Text variant="headlineLarge">Headline Large</Text>
+      <Text variant="headlineMedium">Headline Medium</Text>
+      <Text variant="headlineSmall">Headline Small</Text>
       <Divider style={{ marginVertical: 24 }} />
 
-      <Text category="p1">
+      <Text variant="titleLarge">Title Large</Text>
+      <Text variant="titleMedium">Title Medium</Text>
+      <Text variant="titleSmall">Title Small</Text>
+      <Divider style={{ marginVertical: 24 }} />
+
+      <Text variant="bodyLarge">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dignissim
         id elit sed semper. Integer dolor diam, eleifend a quam quis, sagittis
         laoreet erat. Sed risus metus, pulvinar in mauris id, interdum imperdiet
@@ -33,7 +31,7 @@ export default function TabOneScreen() {
       </Text>
       <Divider style={{ marginVertical: 24 }} />
 
-      <Text category="p2">
+      <Text variant="bodyMedium">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dignissim
         id elit sed semper. Integer dolor diam, eleifend a quam quis, sagittis
         laoreet erat. Sed risus metus, pulvinar in mauris id, interdum imperdiet
@@ -48,7 +46,28 @@ export default function TabOneScreen() {
         in mauris id, interdum imperdiet lectus. Vestibulum aliquam neque eu
         elit eleifend finibus vestibulum quis augue.
       </Text>
-      <Divider style={{ marginVertical: 24, marginBottom: 48 }} />
+      <Divider style={{ marginVertical: 24 }} />
+
+      <Text variant="bodySmall">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dignissim
+        id elit sed semper. Integer dolor diam, eleifend a quam quis, sagittis
+        laoreet erat. Sed risus metus, pulvinar in mauris id, interdum imperdiet
+        lectus. Vestibulum aliquam neque eu elit eleifend finibus vestibulum
+        quis augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Donec dignissim id elit sed semper. Integer dolor diam, eleifend a quam
+        quis, sagittis laoreet erat. Sed risus metus, pulvinar in mauris id,
+        interdum imperdiet lectus. Vestibulum aliquam neque eu elit eleifend
+        finibus vestibulum quis augue. Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. Donec dignissim id elit sed semper. Integer dolor diam,
+        eleifend a quam quis, sagittis laoreet erat. Sed risus metus, pulvinar
+        in mauris id, interdum imperdiet lectus. Vestibulum aliquam neque eu
+        elit eleifend finibus vestibulum quis augue.
+      </Text>
+      <Divider style={{ marginVertical: 24 }} />
+
+      <Text variant="labelLarge">Label Large</Text>
+      <Text variant="labelMedium">Label Medium</Text>
+      <Text variant="labelSmall">Label Small</Text>
 
       <Button
         style={{ marginBottom: 24 }}

@@ -1,4 +1,5 @@
 {
+  "text-basic-color": "$color-basic-800",
   "color-primary-100": "#FFE9CE",
   "color-primary-200": "#FFCC9E",
   "color-primary-300": "#FFA86D",

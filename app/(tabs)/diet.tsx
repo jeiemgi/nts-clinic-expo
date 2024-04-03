@@ -1,12 +1,18 @@
-import { Datepicker, Layout, Toggle } from "@ui-kitten/components";
 import { useState } from "react";
+import { Switch } from "react-native-paper";
 
-export default function TabOneScreen() {
-  const [date, setDate] = useState(new Date());
+import { Screen } from "@/components";
+
+export default function DietScreen() {
+  const [checked, setChecked] = useState(false);
+
+  const onCheckedChange = (isChecked: boolean): void => {
+    setChecked(isChecked);
+  };
 
   return (
-    <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Datepicker date={date} onSelect={(nextDate) => setDate(nextDate)} />
-    </Layout>
+    <Screen style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Switch value={checked} onValueChange={onCheckedChange} />
+    </Screen>
   );
 }

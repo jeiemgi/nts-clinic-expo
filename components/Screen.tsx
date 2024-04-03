@@ -1,5 +1,4 @@
-import { Layout, LayoutProps } from "@ui-kitten/components";
-import { ScrollView } from "react-native";
+import { ScrollView, ScrollViewProps } from "react-native";
 
 const GRID_UNIT = 4;
 
@@ -20,20 +19,18 @@ export const Screen = ({
   style,
   children,
   ...props
-}: LayoutProps & Props) => {
+}: ScrollViewProps & Props) => {
   const computedStyles = [
     { paddingVertical: py * GRID_UNIT, paddingHorizontal: px * GRID_UNIT },
     style,
   ];
 
   return (
-    <Layout {...props}>
-      <ScrollView
-        contentContainerStyle={computedStyles}
-        contentInsetAdjustmentBehavior="automatic"
-      >
-        {children}
-      </ScrollView>
-    </Layout>
+    <ScrollView
+      contentContainerStyle={computedStyles}
+      contentInsetAdjustmentBehavior="automatic"
+    >
+      {children}
+    </ScrollView>
   );
 };
