@@ -42,15 +42,18 @@ function OnBoarding() {
             <Box style={{ alignItems: "center" }} my={20}>
               <NTSLogo fill="white" />
             </Box>
-            <Box my={10}>
+            <Box
+              my={10}
+              px={4}
+              style={{ flex: 1 }}
+              justifyContent="space-around"
+            >
               <Typography
                 type="h2"
                 style={{ color: theme.colors.onPrimary, textAlign: "center" }}
               >
                 TE DAMOS LA {"\n"}BIENVENIDA
               </Typography>
-            </Box>
-            <Box px={8}>
               <Typography
                 style={{
                   textAlign: "center",

@@ -105,7 +105,7 @@ function RootLayoutNav() {
           <ThemeProvider
             value={colorScheme === "dark" ? DarkTheme : LightTheme}
           >
-            <Stack initialRouteName="(tabs)">
+            <Stack initialRouteName="onboarding">
               <Stack.Screen
                 name="onboarding"
                 options={{ headerShown: false }}

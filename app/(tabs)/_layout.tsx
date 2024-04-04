@@ -1,4 +1,7 @@
+import { useFonts } from "expo-font";
 import { Redirect } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
 import { Text } from "react-native-paper";
 
 import { HomeTabBar, useSession } from "@/components";
@@ -11,16 +14,16 @@ export default function TabLayout() {
     return <Text>Loading...</Text>;
   }
 
-  if ("true") {
+  /*if ("true") {
     return <Redirect href="/onboarding" />;
-  }
+  }*/
 
   // Only require authentication within the (tabs) group's layout as users
   // need to be able to access the (auth) group and sign in again.
   if (!session) {
     // On web, static rendering will stop here as the user is not authenticated
     // in the headless Node process that the pages are rendered in.
-    return <Redirect href="/auth" />;
+    return <Redirect href="/onboarding" />;
   }
 
   return <HomeTabBar />;
