@@ -1,110 +1,82 @@
-import { router } from "expo-router";
 import React from "react";
-import { StyleSheet, useWindowDimensions, View } from "react-native";
-import { TextInput } from "react-native-paper";
+import {
+  Animated,
+  I18nManager,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
+} from "react-native";
+import { useTheme } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { TabView, SceneMap } from "react-native-tab-view";
+import {
+  TabView,
+  SceneMap,
+  SceneRendererProps,
+  TabBar,
+  Route,
+  NavigationState,
+} from "react-native-tab-view";
 
-import { Screen } from "@/components";
-import Button from "@/components/Button";
-import PasswordInput from "@/components/PasswordInput";
-import { useSession } from "@/components/SessionProviderContext";
+import Login from "@/screens/Login";
+import SignUp from "@/screens/SignUp";
 import NTSLogo from "@/svg/NTSLogo";
 
-function LogIn() {
-  const { signIn } = useSession();
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-
-  return (
-    <Screen py={8} safeAreaView={false}>
-      <TextInput
-        value={email}
-        autoCorrect={false}
-        autoComplete="email"
-        autoCapitalize="none"
-        style={{ marginBottom: 24 }}
-        placeholder="Correo electrónico"
-        onChangeText={(nextValue) => setEmail(nextValue)}
-      />
-      <PasswordInput
-        value={password}
-        style={{ marginBottom: 24 }}
-        placeholder="Contraseña"
-        onChangeText={(nextValue) => setPassword(nextValue)}
-      />
-      <Button
-        onPress={() => {
-          signIn();
-          // Navigate after signing in. You may want to tweak this to ensure sign-in is
-          // successful before navigating.
-          router.replace("/");
-        }}
-        // disabled={email === "" || password === ""}
-      >
-        Iniciar Sesión
-      </Button>
-    </Screen>
-  );
-}
-
-function SignUp() {
-  const { signIn } = useSession();
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-
-  return (
-    <Screen py={8} safeAreaView={false}>
-      <TextInput
-        value={email}
-        autoCorrect={false}
-        autoComplete="email"
-        autoCapitalize="none"
-        style={{ marginBottom: 24 }}
-        placeholder="Correo electrónico"
-        onChangeText={(nextValue) => setEmail(nextValue)}
-      />
-      <PasswordInput
-        value={password}
-        style={{ marginBottom: 24 }}
-        placeholder="Contraseña"
-        onChangeText={(nextValue) => setPassword(nextValue)}
-      />
-      <Button
-        onPress={() => {
-          signIn();
-          // Navigate after signing in. You may want to tweak this to ensure sign-in is
-          // successful before navigating.
-          router.replace("/");
-        }}
-        // disabled={email === "" || password === ""}
-      >
-        Regístrate
-      </Button>
-    </Screen>
-  );
-}
-
 const renderScene = SceneMap({
-  first: LogIn,
-  second: SignUp,
+  first: SignUp,
+  second: Login,
 });
 
-const AuthRoot = (marginVertical: number = 24) => {
+const AuthRoot = () => {
+  const theme = useTheme();
+  const renderTabBar = (
+    props: SceneRendererProps & {
+      navigationState: NavigationState<Route>;
+    },
+  ) => (
+    <TabBar
+      {...props}
+      activeColor={theme.colors.primary}
+      style={{
+        backgroundColor: theme.colors.background,
+        overflow: "hidden",
+      }}
+      labelStyle={{
+        fontSize: 15,
+        color: theme.colors.inversePrimary,
+        textTransform: "none",
+        fontFamily: "Manrope-SemiBold",
+      }}
+      indicatorContainerStyle={{
+        borderBottomWidth: 1,
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+      indicatorStyle={{
+        height: 5,
+        bottom: 1,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        backgroundColor: "tomato",
+      }}
+    />
+  );
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: "first", title: "Iniciar Sesión" },
-    { key: "second", title: "Registrarse" },
+    { key: "first", title: "Regístrate" },
+    { key: "second", title: "Iniciar Sesión" },
   ]);
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={styles.header}>
+      <View style={styles.logoHeader}>
         <NTSLogo />
       </View>
+
       <TabView
-        navigationState={{ index, routes }}
         renderScene={renderScene}
+        renderTabBar={renderTabBar}
+        navigationState={{ index, routes }}
         onIndexChange={setIndex}
         initialLayout={{ width: layout.width }}
       />
@@ -113,16 +85,10 @@ const AuthRoot = (marginVertical: number = 24) => {
 };
 
 const styles = StyleSheet.create({
-  header: {
+  logoHeader: {
     alignItems: "center",
     marginVertical: 24,
   },
-  tab: {
-    paddingVertical: 12,
-  },
-  tabContainer: {
-    paddingVertical: 32,
-  },
-  screen: {},
 });
+
 export default AuthRoot;

@@ -1,36 +1,31 @@
-import { useFonts } from "expo-font";
-import { Slot } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
 import {
-  PaperProvider,
-  MD3LightTheme,
+  DefaultTheme as NavigationLightTheme,
+  DarkTheme as NavigationDarkTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import { StatusBar } from "expo-status-bar";
+import { useEffect } from "react";
+import { useColorScheme } from "react-native";
+import {
+  adaptNavigationTheme,
   configureFonts,
+  MD3DarkTheme,
+  MD3LightTheme,
+  PaperProvider,
 } from "react-native-paper";
-import { Font } from "react-native-paper/src/types";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { SessionProvider } from "@/components/SessionProviderContext";
+import customDarkTheme from "@/dark-theme.json";
+import customLightTheme from "@/light-theme.json";
 
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from "expo-router";
-
-const fontConfig = {
-  fontFamily: "Manrope-Regular",
-  displayLarge: {
-    fontFamily: "Gobold-Italic",
-  },
-  displayMedium: {
-    fontFamily: "Manrope-SemiBold",
-  },
-} as const;
-
-const theme = {
-  ...MD3LightTheme,
-  fonts: configureFonts({ config: fontConfig }),
-};
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -62,16 +57,57 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
+const fontConfig = {
+  fontFamily: "Manrope-Regular",
+  displayLarge: {
+    fontFamily: "Gobold-Italic",
+  },
+  displayMedium: {
+    fontFamily: "Manrope-SemiBold",
+  },
+} as const;
+
+const MD3CombinedLightTheme = {
+  ...MD3LightTheme,
+  fonts: configureFonts({ config: fontConfig }),
+  colors: customLightTheme.colors,
+};
+const MD3CombinedDarkTheme = {
+  ...MD3DarkTheme,
+  dark: true,
+  fonts: configureFonts({ config: fontConfig }),
+  colors: customDarkTheme.colors,
+};
+
 function RootLayoutNav() {
+  const colorScheme = useColorScheme();
+
+  const { LightTheme, DarkTheme } = adaptNavigationTheme({
+    materialLight: MD3CombinedLightTheme,
+    materialDark: MD3CombinedDarkTheme,
+    reactNavigationDark: NavigationDarkTheme,
+    reactNavigationLight: NavigationLightTheme,
+  });
+
   return (
-    <>
-      <SessionProvider>
-        <PaperProvider theme={theme}>
-          <SafeAreaProvider>
-            <Slot />
-          </SafeAreaProvider>
-        </PaperProvider>
-      </SessionProvider>
-    </>
+    <SessionProvider>
+      <PaperProvider
+        theme={
+          colorScheme === "dark" ? MD3CombinedDarkTheme : MD3CombinedLightTheme
+        }
+      >
+        <SafeAreaProvider>
+          <ThemeProvider
+            value={colorScheme === "dark" ? DarkTheme : LightTheme}
+          >
+            <Stack>
+              <Stack.Screen name="auth" options={{ headerShown: false }} />
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            </Stack>
+            <StatusBar />
+          </ThemeProvider>
+        </SafeAreaProvider>
+      </PaperProvider>
+    </SessionProvider>
   );
 }

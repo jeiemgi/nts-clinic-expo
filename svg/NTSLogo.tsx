@@ -1,16 +1,15 @@
 import * as React from "react";
-import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
+import { useColorScheme } from "react-native";
+import Svg, { G, Path, Defs, ClipPath, SvgProps } from "react-native-svg";
 
-function NTSLogo(props) {
+function NTSLogo(props: SvgProps) {
+  const colorScheme = useColorScheme();
+  const fill = colorScheme === "dark" ? "#FFFFFF" : "#1E1E1E";
+  const fillInvert = colorScheme === "dark" ? "#1E1E1E" : "#FFFFFF";
+
   return (
-    <Svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={149}
-      height={64}
-      fill="none"
-      {...props}
-    >
-      <G fill="#1E1E1E" clipPath="url(#a)">
+    <Svg width={149} height={64} fill="none" {...props}>
+      <G fill={fill} clipPath="url(#a)">
         <Path d="M36.327 16.492c.735 0 1.225.493 1.127 1.231l-4.118 43.619c-.098.738-.588 1.23-1.274 1.23h-7.599c-.637 0-1.128-.344-1.275-.984l-8.775-32.64h-.392L11.03 61.39c-.099.738-.49 1.23-1.275 1.23h-7.99c-.735 0-1.226-.492-1.128-1.23L6.08 2.708c.098-.739.588-1.231 1.275-1.231h7.55c.637 0 1.127.345 1.274.985l8.58 32.443h.49l1.715-17.182c.098-.738.49-1.23 1.275-1.23h8.089z" />
         <Path d="M93.195 1.477H29.562c-.736 0-1.275.492-1.275 1.23l-.735 7.632c-.099.738.343 1.23 1.127 1.23h16.766l-4.608 49.723c-.098.788.343 1.231 1.127 1.231h7.942c.834 0 1.275-.394 1.275-1.23l4.608-49.773h27.307l-.49 5.022c-.099.738.343 1.23 1.127 1.23h7.942c.833 0 1.274-.492 1.274-1.23l1.275-13.883c.098-.69-.196-1.182-1.03-1.182z" />
         <Path d="M89.959 31.163l-17.6-6.006.736-7.483c.098-.739-.344-1.231-1.128-1.231h-7.942c-.833 0-1.274.492-1.274 1.23l-1.324 12.85c-.147 1.477.49 2.363 1.765 2.855l17.501 5.908-1.03 11.618c-.146 2.019-1.225 1.625-3.235 1.625h-3.627c-1.962 0-3.089.394-2.942-1.625l.637-7.286c.098-.787-.245-1.23-1.127-1.23h-7.942c-.735 0-1.275.393-1.275 1.23l-1.127 11.816c-.637 7.237-1.618 7.237 4.314 7.237h21.62c4.608 0 4.313-3.791 4.608-7.483l1.618-17.674c.637-5.071 0-5.859-1.226-6.351z" />
@@ -22,7 +21,7 @@ function NTSLogo(props) {
       </G>
       <Defs>
         <ClipPath id="a">
-          <Path fill="#fff" d="M.147 0H148.69v64H.147z" />
+          <Path fill={fillInvert} d="M.147 0H148.69v64H.147z" />
         </ClipPath>
       </Defs>
     </Svg>
