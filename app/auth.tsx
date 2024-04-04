@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Animated,
-  I18nManager,
-  StyleSheet,
-  Text,
-  useWindowDimensions,
-  View,
-} from "react-native";
+import { StyleSheet, useWindowDimensions, View } from "react-native";
 import { useTheme } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -43,21 +36,23 @@ const AuthRoot = () => {
       }}
       labelStyle={{
         fontSize: 15,
-        color: theme.colors.inversePrimary,
+        paddingVertical: 12,
+        color: theme.colors.outline,
         textTransform: "none",
-        fontFamily: "Manrope-SemiBold",
+        fontFamily: "Manrope-Bold",
       }}
       indicatorContainerStyle={{
         borderBottomWidth: 1,
+        borderBottomColor: theme.colors.outline,
         alignItems: "center",
         justifyContent: "center",
       }}
       indicatorStyle={{
         height: 5,
-        bottom: 1,
+        bottom: 0,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
-        backgroundColor: "tomato",
+        backgroundColor: theme.colors.primary,
       }}
     />
   );
@@ -87,7 +82,7 @@ const AuthRoot = () => {
 const styles = StyleSheet.create({
   logoHeader: {
     alignItems: "center",
-    marginVertical: 24,
+    marginVertical: 32,
   },
 });
 

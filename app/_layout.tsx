@@ -14,6 +14,7 @@ import {
   configureFonts,
   MD3DarkTheme,
   MD3LightTheme,
+  MD3Theme,
   PaperProvider,
 } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -35,6 +36,7 @@ export default function RootLayout() {
     "Manrope-Light": require("../assets/fonts/Manrope-Light.ttf"),
     "Manrope-Regular": require("../assets/fonts/Manrope-Regular.ttf"),
     "Manrope-SemiBold": require("../assets/fonts/Manrope-SemiBold.ttf"),
+    "Manrope-Bold": require("../assets/fonts/Manrope-Bold.ttf"),
     Gobold: require("../assets/fonts/Gobold-Bold.otf"),
     "Gobold-Italic": require("../assets/fonts/Gobold-Bold-Italic.otf"),
   });

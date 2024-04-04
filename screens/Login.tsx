@@ -15,6 +15,7 @@ function LogIn() {
   return (
     <Screen py={8} safeAreaView={false}>
       <TextInput
+        mode="outlined"
         value={email}
         autoCorrect={false}
         autoComplete="email"
@@ -25,11 +26,13 @@ function LogIn() {
       />
       <PasswordInput
         value={password}
-        style={{ marginBottom: 24 }}
         placeholder="Contraseña"
+        style={{ marginBottom: 32 }}
         onChangeText={(nextValue) => setPassword(nextValue)}
       />
       <Button
+        mode="contained"
+        elevation={2}
         onPress={() => {
           signIn();
           // Navigate after signing in. You may want to tweak this to ensure sign-in is

@@ -1,6 +1,5 @@
 import React from "react";
-import { Pressable } from "react-native";
-import { TextInput, Icon, TextInputProps } from "react-native-paper";
+import { TextInput, TextInputProps } from "react-native-paper";
 
 export const PasswordInput = (props: TextInputProps): React.ReactElement => {
   const [secureTextEntry, setSecureTextEntry] = React.useState(true);
@@ -11,10 +10,12 @@ export const PasswordInput = (props: TextInputProps): React.ReactElement => {
 
   return (
     <TextInput
+      mode="outlined"
       right={
-        <Pressable onPress={toggleSecureEntry}>
-          <Icon size={24} source={secureTextEntry ? "eye-off" : "eye"} />
-        </Pressable>
+        <TextInput.Icon
+          onPress={toggleSecureEntry}
+          icon={secureTextEntry ? "eye-off" : "eye"}
+        />
       }
       secureTextEntry={secureTextEntry}
       {...props}

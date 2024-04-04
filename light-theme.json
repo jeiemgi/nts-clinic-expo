@@ -1,6 +1,6 @@
 {
   "colors": {
-    "primary": "rgb(175, 48, 0)",
+    "primary": "#FF4E0D",
     "onPrimary": "rgb(255, 255, 255)",
     "primaryContainer": "rgb(255, 219, 209)",
     "onPrimaryContainer": "rgb(58, 10, 0)",
@@ -22,8 +22,8 @@
     "onSurface": "rgb(32, 26, 24)",
     "surfaceVariant": "rgb(245, 222, 215)",
     "onSurfaceVariant": "rgb(83, 67, 63)",
-    "outline": "rgb(133, 115, 110)",
-    "outlineVariant": "rgb(216, 194, 188)",
+    "outline": "rgb(156, 156, 156)",
+    "outlineVariant": "rgb(120, 120, 120)",
     "shadow": "rgb(0, 0, 0)",
     "scrim": "rgb(0, 0, 0)",
     "inverseSurface": "rgb(54, 47, 45)",

@@ -5,6 +5,11 @@ const Button = (props: ButtonProps) => {
   return (
     <DefaultButton
       {...props}
+      labelStyle={{
+        fontSize: 18,
+        fontFamily: "Manrope-Bold",
+      }}
+      contentStyle={{ paddingVertical: 8 }}
       style={[{ width: "100%", borderRadius: 100 }, props.style]}
     />
   );
