@@ -1,17 +1,6 @@
-import { ScrollView, ScrollViewProps } from "react-native";
+import { ScrollView, ScrollViewProps, View } from "react-native";
 
-const GRID_UNIT = 4;
-
-type GridUnit = number;
-
-interface Props {
-  /**
-   * Number that will be multiplied by the grid unit
-   */
-  py?: GridUnit;
-  px?: GridUnit;
-  safeAreaView?: boolean;
-}
+import { BoxProps, BoxUnitMultiplier } from "@/components/Box";
 
 export const Screen = ({
   py = 0,
@@ -19,9 +8,12 @@ export const Screen = ({
   style,
   children,
   ...props
-}: ScrollViewProps & Props) => {
+}: ScrollViewProps & BoxProps) => {
   const computedStyles = [
-    { paddingVertical: py * GRID_UNIT, paddingHorizontal: px * GRID_UNIT },
+    {
+      paddingVertical: py * BoxUnitMultiplier,
+      paddingHorizontal: px * BoxUnitMultiplier,
+    },
     style,
   ];
 
@@ -29,6 +21,7 @@ export const Screen = ({
     <ScrollView
       contentContainerStyle={computedStyles}
       contentInsetAdjustmentBehavior="automatic"
+      {...props}
     >
       {children}
     </ScrollView>

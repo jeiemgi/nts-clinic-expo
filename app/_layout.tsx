@@ -14,7 +14,6 @@ import {
   configureFonts,
   MD3DarkTheme,
   MD3LightTheme,
-  MD3Theme,
   PaperProvider,
 } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -61,11 +60,15 @@ export default function RootLayout() {
 
 const fontConfig = {
   fontFamily: "Manrope-Regular",
+  bodyMedium: {
+    fontFamily: "Manrope-Regular",
+  },
   displayLarge: {
     fontFamily: "Gobold-Italic",
   },
   displayMedium: {
-    fontFamily: "Manrope-SemiBold",
+    fontSize: 34,
+    fontFamily: "Gobold-Italic",
   },
 } as const;
 
@@ -102,8 +105,15 @@ function RootLayoutNav() {
           <ThemeProvider
             value={colorScheme === "dark" ? DarkTheme : LightTheme}
           >
-            <Stack>
-              <Stack.Screen name="auth" options={{ headerShown: false }} />
+            <Stack initialRouteName="(tabs)">
+              <Stack.Screen
+                name="onboarding"
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="auth"
+                options={{ headerShown: false, gestureEnabled: false }}
+              />
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             </Stack>
             <StatusBar />

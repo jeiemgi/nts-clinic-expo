@@ -11,6 +11,10 @@ export default function TabLayout() {
     return <Text>Loading...</Text>;
   }
 
+  if ("true") {
+    return <Redirect href="/onboarding" />;
+  }
+
   // Only require authentication within the (tabs) group's layout as users
   // need to be able to access the (auth) group and sign in again.
   if (!session) {

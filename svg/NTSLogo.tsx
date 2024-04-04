@@ -4,7 +4,12 @@ import Svg, { G, Path, Defs, ClipPath, SvgProps } from "react-native-svg";
 
 function NTSLogo(props: SvgProps) {
   const colorScheme = useColorScheme();
-  const fill = colorScheme === "dark" ? "#FFFFFF" : "#1E1E1E";
+  const fill = props.fill
+    ? props.fill
+    : colorScheme === "dark"
+      ? "#FFFFFF"
+      : "#1E1E1E";
+
   const fillInvert = colorScheme === "dark" ? "#1E1E1E" : "#FFFFFF";
 
   return (
