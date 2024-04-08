@@ -1,10 +1,8 @@
-import { useFonts } from "expo-font";
 import { Redirect } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
 import { Text } from "react-native-paper";
 
-import { HomeTabBar, useSession } from "@/components";
+import { useSession } from "@/components";
+import RootTabs from "@/components/Tabs/RootTabs";
 
 export default function TabLayout() {
   const { session, isLoading } = useSession();
@@ -22,5 +20,5 @@ export default function TabLayout() {
     return <Redirect href="/onboarding" />;
   }
 
-  return <HomeTabBar />;
+  return <RootTabs />;
 }

@@ -6,7 +6,7 @@ import { BottomNavigation, Text, useTheme } from "react-native-paper";
 import MaterialIcon from "@/components/MaterialIcon";
 import Colors from "@/constants/colors";
 
-export const HomeTabBar = () => {
+const RootTabs = () => {
   const theme = useTheme();
   return (
     <Tabs
@@ -126,3 +126,5 @@ export const HomeTabBar = () => {
     </Tabs>
   );
 };
+
+export default RootTabs;

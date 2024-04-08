@@ -4,7 +4,7 @@ const baseColors = {
   orange: "#FF4E0D",
   black: "#1E1E1E",
   "black-15": "rgba(30, 30, 30, 0.15)",
-  "black-02": "rgba(30, 30, 30, 0.02)",
+  offWhite: "#F7F7F7",
 };
 
 export default {
@@ -13,5 +13,5 @@ export default {
   primary: baseColors.orange,
   text: baseColors.black,
   screenBackgroundDark: baseColors["black-15"],
-  screenBackgroundLight: baseColors["black-02"],
+  screenBackgroundLight: baseColors.offWhite,
 };

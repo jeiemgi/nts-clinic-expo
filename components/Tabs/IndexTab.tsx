@@ -24,17 +24,21 @@ const IndexTab = () => {
             <Appbar.Action icon="bell-outline" />
           </Link>
         </View>
-        <Box px={4}>
+
+        <Box px={4} mb={4}>
           <Typography type="h1">Hola, Jorge</Typography>
           <Box my={3}>
             <Typography>Te damos la bienvenida a tu espacio NTS</Typography>
           </Box>
 
           <TouchableRipple
-            style={styles.cardPressable}
+            style={[styles.cardPressable, { marginBottom: 16 }]}
             onPress={() => console.log("Pressed")}
           >
-            <Surface style={styles.card} mode="flat">
+            <Surface
+              style={[styles.card, { backgroundColor: Colors.primary }]}
+              mode="flat"
+            >
               <View style={styles.cardIcon}>
                 <Icon source="fire" color={Colors.white} size={56} />
               </View>
@@ -51,6 +55,97 @@ const IndexTab = () => {
               </Box>
             </Surface>
           </TouchableRipple>
+
+          <TouchableRipple
+            style={styles.cardPressable}
+            onPress={() => console.log("Pressed")}
+          >
+            <Surface elevation={4} style={styles.card} mode="flat">
+              <Box flexDirection="row">
+                <Box mr={4}>
+                  <Icon source="calendar" color={Colors.black} size={24} />
+                </Box>
+                <Typography bold type="h3">
+                  Próximas citas
+                </Typography>
+              </Box>
+            </Surface>
+          </TouchableRipple>
+        </Box>
+
+        <Box
+          px={4}
+          style={{ gap: 16 }}
+          flexDirection="row"
+          justifyContent="space-between"
+        >
+          <TouchableRipple
+            style={styles.cardPressableSquare}
+            onPress={() => console.log("Pressed")}
+          >
+            <Surface elevation={4} style={styles.cardSquare} mode="flat">
+              <Box mb={3} alignItems="center">
+                <Icon source="dumbbell" color={Colors.primary} size={32} />
+              </Box>
+              <Typography
+                bold
+                type="overline"
+                align="center"
+                numberOfLines={2}
+                style={{ flexWrap: "wrap" }}
+              >
+                Iniciar Entrenamiento
+              </Typography>
+            </Surface>
+          </TouchableRipple>
+
+          <TouchableRipple
+            style={styles.cardPressableSquare}
+            onPress={() => console.log("Pressed")}
+          >
+            <Surface elevation={4} style={styles.cardSquare} mode="flat">
+              <Box mb={3} alignItems="center">
+                <Icon
+                  source="silverware-fork-knife"
+                  color={Colors.primary}
+                  size={32}
+                />
+              </Box>
+              <Typography
+                bold
+                type="overline"
+                align="center"
+                numberOfLines={2}
+                style={{ flexWrap: "wrap" }}
+              >
+                Registrar una comida
+              </Typography>
+            </Surface>
+          </TouchableRipple>
+
+          <TouchableRipple
+            style={styles.cardPressableSquare}
+            onPress={() => console.log("Pressed")}
+          >
+            <Surface elevation={4} style={styles.cardSquare} mode="flat">
+              <Box mb={3} alignItems="center">
+                <Icon
+                  source="note-check-outline"
+                  color={Colors.primary}
+                  size={32}
+                />
+              </Box>
+              <Typography
+                bold
+                type="overline"
+                align="center"
+                numberOfLines={2}
+                style={{ flexWrap: "wrap" }}
+              >
+                Revisar {"\n"}Tareas
+              </Typography>
+            </Surface>
+          </TouchableRipple>
         </Box>
       </SafeAreaView>
     </View>
@@ -64,15 +159,30 @@ const styles = StyleSheet.create({
   },
   cardPressable: {
     borderRadius: 12,
+    overflow: "hidden",
+  },
+  cardPressableSquare: {
+    flex: 1,
+    borderRadius: 12,
+    overflow: "hidden",
   },
   card: {
+    alignItems: "stretch",
     justifyContent: "center",
-    color: Colors.white,
     borderRadius: 12,
     paddingVertical: 18,
     paddingHorizontal: 16,
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.white,
   },
+  cardSquare: {
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 12,
+    paddingVertical: 18,
+    paddingHorizontal: 16,
+    backgroundColor: Colors.white,
+  },
+
   cardIcon: {
     width: 56,
     right: 16,
