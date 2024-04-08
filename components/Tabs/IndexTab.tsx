@@ -1,153 +1,177 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { Link } from "expo-router";
-import { Image, StyleSheet, View } from "react-native";
-import { Appbar, Icon, Surface, TouchableRipple } from "react-native-paper";
+import { useRouter } from "expo-router";
+import React from "react";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
+import {
+  Appbar,
+  Icon,
+  Surface,
+  TouchableRipple,
+  Searchbar,
+} from "react-native-paper";
+import { IconSource } from "react-native-paper/lib/typescript/components/Icon";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { useSession } from "@/components";
 import Box from "@/components/Box";
 import Typography from "@/components/Typography";
 import Colors from "@/constants/colors";
 
 const NTSLogo = require("@/assets/images/nts-logo.png");
 
+const SquareCard = ({
+  onPress,
+  label,
+  icon,
+}: {
+  onPress: () => void;
+  label: React.ReactNode;
+  icon: IconSource;
+}) => {
+  return (
+    <TouchableRipple style={styles.cardPressableSquare} onPress={onPress}>
+      <Surface elevation={4} style={styles.cardSquare} mode="flat">
+        <Box mb={3} alignItems="center">
+          <Icon source={icon} color={Colors.primary} size={32} />
+        </Box>
+        <Typography
+          bold
+          type="overline"
+          align="center"
+          numberOfLines={2}
+          style={{ flexWrap: "wrap" }}
+        >
+          {label}
+        </Typography>
+      </Surface>
+    </TouchableRipple>
+  );
+};
+
+const WelcomeHeader = () => {
+  const router = useRouter();
+  const { signOut } = useSession();
+  return (
+    <View style={styles.header}>
+      <Image source={NTSLogo} style={styles.logo} />
+      <Appbar.Header
+        statusBarHeight={0}
+        style={{ backgroundColor: "transparent" }}
+      >
+        <Appbar.Action
+          icon="logout"
+          onPress={() => {
+            signOut();
+            router.navigate("/");
+          }}
+        />
+        <Appbar.Action
+          icon="bell-outline"
+          onPress={() => router.navigate("/notifications")}
+        />
+      </Appbar.Header>
+    </View>
+  );
+};
+
 const IndexTab = () => {
+  const [searchQuery, setSearchQuery] = React.useState("");
+
   return (
     <View style={styles.container}>
       <LinearGradient
         style={[styles.background]}
         colors={[Colors.screenBackgroundDark, "transparent"]}
       />
-      <SafeAreaView>
-        <View style={styles.header}>
-          <Image source={NTSLogo} style={styles.logo} />
-          <Link href="/(home)/notifications" asChild>
-            <Appbar.Action icon="bell-outline" />
-          </Link>
-        </View>
+      <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView contentContainerStyle={{ flex: 1, paddingBottom: 300 }}>
+          <WelcomeHeader />
 
-        <Box px={4} mb={4}>
-          <Typography type="h1">Hola, Jorge</Typography>
-          <Box my={3}>
-            <Typography>Te damos la bienvenida a tu espacio NTS</Typography>
+          <Box px={4} mb={4}>
+            <Typography type="h1">Hola, Jorge</Typography>
+            <Box my={3}>
+              <Typography>Te damos la bienvenida a tu espacio NTS</Typography>
+            </Box>
+
+            <TouchableRipple
+              style={[styles.cardPressable, { marginBottom: 16 }]}
+              onPress={() => console.log("Pressed")}
+            >
+              <Surface
+                style={[styles.card, { backgroundColor: Colors.primary }]}
+                mode="flat"
+              >
+                <View style={styles.cardIcon}>
+                  <Icon source="fire" color={Colors.white} size={56} />
+                </View>
+                <Box my={3}>
+                  <Typography color="white" type="overline">
+                    Plan 1
+                  </Typography>
+                  <Typography bold color="white" type="h3">
+                    Semana 1 / Día 2
+                  </Typography>
+                  <Typography color="white">
+                    Termina el 15 de enero de 2024
+                  </Typography>
+                </Box>
+              </Surface>
+            </TouchableRipple>
+
+            <TouchableRipple
+              style={styles.cardPressable}
+              onPress={() => console.log("Pressed")}
+            >
+              <Surface elevation={4} style={styles.card} mode="flat">
+                <Box flexDirection="row">
+                  <Box mr={4}>
+                    <Icon source="calendar" color={Colors.black} size={24} />
+                  </Box>
+                  <Typography bold type="h3">
+                    Próximas citas
+                  </Typography>
+                </Box>
+              </Surface>
+            </TouchableRipple>
           </Box>
 
-          <TouchableRipple
-            style={[styles.cardPressable, { marginBottom: 16 }]}
-            onPress={() => console.log("Pressed")}
+          <Box
+            px={4}
+            style={{ gap: 16 }}
+            flexDirection="row"
+            justifyContent="space-between"
           >
-            <Surface
-              style={[styles.card, { backgroundColor: Colors.primary }]}
-              mode="flat"
-            >
-              <View style={styles.cardIcon}>
-                <Icon source="fire" color={Colors.white} size={56} />
-              </View>
-              <Box my={3}>
-                <Typography color="white" type="overline">
-                  Plan 1
-                </Typography>
-                <Typography bold color="white" type="h3">
-                  Semana 1 / Día 2
-                </Typography>
-                <Typography color="white">
-                  Termina el 15 de enero de 2024
-                </Typography>
-              </Box>
-            </Surface>
-          </TouchableRipple>
+            <SquareCard
+              icon="dumbbell"
+              label="Iniciar Entrenamiento"
+              onPress={() => console.log("Pressed")}
+            />
 
-          <TouchableRipple
-            style={styles.cardPressable}
-            onPress={() => console.log("Pressed")}
-          >
-            <Surface elevation={4} style={styles.card} mode="flat">
-              <Box flexDirection="row">
-                <Box mr={4}>
-                  <Icon source="calendar" color={Colors.black} size={24} />
-                </Box>
-                <Typography bold type="h3">
-                  Próximas citas
-                </Typography>
-              </Box>
-            </Surface>
-          </TouchableRipple>
-        </Box>
+            <SquareCard
+              label="Registrar una comida"
+              icon="silverware-fork-knife"
+              onPress={() => console.log("Pressed")}
+            />
 
-        <Box
-          px={4}
-          style={{ gap: 16 }}
-          flexDirection="row"
-          justifyContent="space-between"
-        >
-          <TouchableRipple
-            style={styles.cardPressableSquare}
-            onPress={() => console.log("Pressed")}
-          >
-            <Surface elevation={4} style={styles.cardSquare} mode="flat">
-              <Box mb={3} alignItems="center">
-                <Icon source="dumbbell" color={Colors.primary} size={32} />
-              </Box>
-              <Typography
-                bold
-                type="overline"
-                align="center"
-                numberOfLines={2}
-                style={{ flexWrap: "wrap" }}
-              >
-                Iniciar Entrenamiento
-              </Typography>
-            </Surface>
-          </TouchableRipple>
-
-          <TouchableRipple
-            style={styles.cardPressableSquare}
-            onPress={() => console.log("Pressed")}
-          >
-            <Surface elevation={4} style={styles.cardSquare} mode="flat">
-              <Box mb={3} alignItems="center">
-                <Icon
-                  source="silverware-fork-knife"
-                  color={Colors.primary}
-                  size={32}
-                />
-              </Box>
-              <Typography
-                bold
-                type="overline"
-                align="center"
-                numberOfLines={2}
-                style={{ flexWrap: "wrap" }}
-              >
-                Registrar una comida
-              </Typography>
-            </Surface>
-          </TouchableRipple>
-
-          <TouchableRipple
-            style={styles.cardPressableSquare}
-            onPress={() => console.log("Pressed")}
-          >
-            <Surface elevation={4} style={styles.cardSquare} mode="flat">
-              <Box mb={3} alignItems="center">
-                <Icon
-                  source="note-check-outline"
-                  color={Colors.primary}
-                  size={32}
-                />
-              </Box>
-              <Typography
-                bold
-                type="overline"
-                align="center"
-                numberOfLines={2}
-                style={{ flexWrap: "wrap" }}
-              >
-                Revisar {"\n"}Tareas
-              </Typography>
-            </Surface>
-          </TouchableRipple>
-        </Box>
+            <SquareCard
+              icon="note-check-outline"
+              label={<> Revisar {"\n"}Tareas</>}
+              onPress={() => console.log("Pressed")}
+            />
+          </Box>
+        </ScrollView>
       </SafeAreaView>
+
+      <View style={styles.searchContainer}>
+        <Searchbar
+          style={{
+            backgroundColor: Colors.screenBackgroundLight,
+          }}
+          placeholder="Search"
+          onChangeText={setSearchQuery}
+          value={searchQuery}
+        />
+      </View>
     </View>
   );
 };
@@ -212,6 +236,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     height: 60,
     marginBottom: 16,
+  },
+  searchContainer: {
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    padding: 16,
+    backgroundColor: Colors.white,
   },
 });
 export default IndexTab;

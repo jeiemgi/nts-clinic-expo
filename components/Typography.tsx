@@ -48,9 +48,9 @@ const typographyMaterialDict: TypographyStylesDict = {
       lineHeight: 40,
     },
     fonts: {
-      regular: TypeFamily.ManropeRegular,
-      semiBold: TypeFamily.ManropeSemiBold,
-      bold: TypeFamily.ManropeBold,
+      regular: TypeFamily.GoboldItalic,
+      semiBold: TypeFamily.GoboldItalic,
+      bold: TypeFamily.GoboldItalic,
     },
   },
   h3: {
