@@ -4,6 +4,7 @@ import { Animated } from "react-native";
 import { BottomNavigation, Text, useTheme } from "react-native-paper";
 
 import MaterialIcon from "@/components/MaterialIcon";
+import Colors from "@/constants/colors";
 
 export const HomeTabBar = () => {
   const theme = useTheme();
@@ -18,6 +19,7 @@ export const HomeTabBar = () => {
           activeIndicatorStyle={{ backgroundColor: theme.colors.primary }}
           navigationState={state}
           safeAreaInsets={insets}
+          style={{ backgroundColor: Colors.white }}
           renderLabel={({ focused, route }) => {
             const { options } = descriptors[route.key];
             return (

@@ -19,6 +19,7 @@ import onboarding from "@/assets/images/on-boarding-bg.jpg";
 import { Button, MaterialIcon } from "@/components";
 import Box from "@/components/Box";
 import Typography from "@/components/Typography";
+import Colors from "@/constants/colors";
 import NTSLogo from "@/svg/NTSLogo";
 
 function BulletList({ label }: { label: string }) {
@@ -30,7 +31,7 @@ function BulletList({ label }: { label: string }) {
       }}
     >
       <View style={{ marginRight: 12 }}>
-        <MaterialIcon color="#1E1E1E" size={20} name="check" />
+        <MaterialIcon color={Colors.black} size={20} name="check" />
       </View>
       <Typography style={{ flex: 1, flexWrap: "wrap" }}>{label}</Typography>
     </View>
@@ -78,7 +79,7 @@ const SlideTwo = () => {
     <View style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
         <Box alignItems="center" my={20}>
-          <NTSLogo fill="#1E1E1E" />
+          <NTSLogo fill={Colors.black} />
         </Box>
 
         <Box mb={12} px={4}>
@@ -103,7 +104,7 @@ const SlideThree = () => {
     <View style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
         <Box alignItems="center" my={20}>
-          <NTSLogo fill="#1E1E1E" />
+          <NTSLogo fill={Colors.black} />
         </Box>
 
         <Box mb={12} px={4}>
@@ -119,13 +120,21 @@ const SlideThree = () => {
           </Typography>
         </Box>
         <Box mb={3} px={4}>
-          <Link href="/auth" asChild>
+          <Link
+            // @ts-ignore
+            href="/auth?action=1"
+            asChild
+          >
             <Button mode="contained">Ya soy Paciente</Button>
           </Link>
         </Box>
         <Box mb={12} px={4}>
-          <Link href="/auth" asChild>
-            <Button mode="outlined"> Explorar App</Button>
+          <Link
+            // @ts-ignore
+            href="/auth?action=0"
+            asChild
+          >
+            <Button mode="outlined">Registrarme</Button>
           </Link>
         </Box>
       </SafeAreaView>
@@ -142,7 +151,6 @@ const DATA_ARRAY = [
 const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
 
 function OnBoarding() {
-  const theme = useTheme();
   const { width } = useWindowDimensions();
   const ref = React.useRef<PagerView>(null);
 
@@ -178,15 +186,11 @@ function OnBoarding() {
     [],
   );
 
-  const onPageScrollStateChanged = (e) => {
-    console.log("log", e);
-  };
   return (
     <>
       <AnimatedPagerView
         ref={ref}
         style={styles.container}
-        onPageScrollStateChanged={onPageScrollStateChanged}
         onPageScroll={onPageScroll}
       >
         {DATA_ARRAY.map(({ key, Component }) => (
@@ -222,7 +226,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginHorizontal: 3,
     borderWidth: 1,
-    borderColor: "rgba(254, 254, 254, 0.5)",
+    borderColor: "rgba(254, 254, 254, 0.3)",
   },
 });
 

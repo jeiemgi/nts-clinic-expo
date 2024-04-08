@@ -1,17 +1,9 @@
 import * as React from "react";
-import { useColorScheme } from "react-native";
-import Svg, { G, Path, Defs, ClipPath, SvgProps } from "react-native-svg";
+import Svg, { G, Path, SvgProps } from "react-native-svg";
 
-function NTSLogo(props: SvgProps) {
-  const colorScheme = useColorScheme();
-  const fill = props.fill
-    ? props.fill
-    : colorScheme === "dark"
-      ? "#FFFFFF"
-      : "#1E1E1E";
+import Colors from "@/constants/colors";
 
-  const fillInvert = colorScheme === "dark" ? "#1E1E1E" : "#FFFFFF";
-
+function NTSLogo({ fill = Colors.black, ...props }: SvgProps) {
   return (
     <Svg width={149} height={64} fill="none" {...props}>
       <G fill={fill} clipPath="url(#a)">
@@ -24,11 +16,6 @@ function NTSLogo(props: SvgProps) {
           clipRule="evenodd"
         />
       </G>
-      <Defs>
-        <ClipPath id="a">
-          <Path fill={fillInvert} d="M.147 0H148.69v64H.147z" />
-        </ClipPath>
-      </Defs>
     </Svg>
   );
 }

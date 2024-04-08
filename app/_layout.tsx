@@ -19,6 +19,7 @@ import {
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { SessionProvider } from "@/components/SessionProviderContext";
+import { themeFontConfig } from "@/constants/typography";
 import customDarkTheme from "@/dark-theme.json";
 import customLightTheme from "@/light-theme.json";
 
@@ -58,29 +59,15 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
-const fontConfig = {
-  fontFamily: "Manrope-Regular",
-  bodyMedium: {
-    fontFamily: "Manrope-Regular",
-  },
-  displayLarge: {
-    fontFamily: "Gobold-Italic",
-  },
-  displayMedium: {
-    fontSize: 34,
-    fontFamily: "Gobold-Italic",
-  },
-} as const;
-
 const MD3CombinedLightTheme = {
   ...MD3LightTheme,
-  fonts: configureFonts({ config: fontConfig }),
+  fonts: configureFonts({ config: themeFontConfig }),
   colors: customLightTheme.colors,
 };
 const MD3CombinedDarkTheme = {
   ...MD3DarkTheme,
   dark: true,
-  fonts: configureFonts({ config: fontConfig }),
+  fonts: configureFonts({ config: themeFontConfig }),
   colors: customDarkTheme.colors,
 };
 

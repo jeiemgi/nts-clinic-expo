@@ -1,14 +1,14 @@
 import { ComponentProps } from "react";
 import { ColorValue, StyleSheet, TextStyle } from "react-native";
-import { Text, TextProps, useTheme } from "react-native-paper";
+import { Text, useTheme } from "react-native-paper";
 import { MD3Colors } from "react-native-paper/lib/typescript/types";
 import { MD3TypescaleKey } from "react-native-paper/src/types";
 
-import NamedStyles = StyleSheet.NamedStyles;
-
-export type TypographyType = "h1" | "h2" | "h3" | "default";
+import Colors from "@/constants/colors";
+import { TypographyType } from "@/constants/typography";
 
 interface Props {
+  bold?: boolean;
   type?: TypographyType;
   color?: ColorValue;
   themeColor?: keyof Omit<MD3Colors, "elevation">;
@@ -25,19 +25,29 @@ const typographyMaterialDict: Record<
   h1: {
     variant: MD3TypescaleKey.displayLarge,
     styles: {
+      fontSize: 34,
       lineHeight: 40,
     },
   },
   h2: {
     variant: MD3TypescaleKey.displayMedium,
     styles: {
+      fontSize: 34,
       lineHeight: 40,
     },
   },
   h3: {
     variant: MD3TypescaleKey.displaySmall,
     styles: {
-      lineHeight: 20,
+      fontSize: 20,
+      lineHeight: 24,
+    },
+  },
+  overline: {
+    variant: MD3TypescaleKey.labelSmall,
+    styles: {
+      fontSize: 10,
+      lineHeight: 12,
     },
   },
   default: {
@@ -48,8 +58,9 @@ const typographyMaterialDict: Record<
   },
 };
 const Typography = ({
+  bold = false,
   type = "default",
-  color = "#1E1E1E",
+  color = Colors.black,
   themeColor,
   align = "left",
   style,
@@ -58,20 +69,15 @@ const Typography = ({
   const { variant, styles: defaultStyles } = typographyMaterialDict[type];
   const { colors } = useTheme();
 
-  return (
-    <Text
-      variant={variant}
-      style={[
-        defaultStyles,
-        {
-          textAlign: align,
-          color: themeColor ? colors[themeColor] : color,
-        },
-        style,
-      ]}
-      {...props}
-    />
-  );
+  const styles = StyleSheet.flatten([
+    defaultStyles,
+    {
+      textAlign: align,
+      color: themeColor ? colors[themeColor] : color,
+    },
+    style,
+  ]);
+  return <Text variant={variant} style={styles} {...props} />;
 };
 
 export default Typography;

@@ -27,3 +27,5 @@ export const Screen = ({
     </ScrollView>
   );
 };
+
+export default Screen;

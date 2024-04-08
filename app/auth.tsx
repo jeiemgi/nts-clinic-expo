@@ -1,3 +1,4 @@
+import { useGlobalSearchParams, useLocalSearchParams } from "expo-router";
 import React from "react";
 import { StyleSheet, useWindowDimensions, View } from "react-native";
 import { useTheme } from "react-native-paper";
@@ -57,7 +58,8 @@ const AuthRoot = () => {
     />
   );
   const layout = useWindowDimensions();
-  const [index, setIndex] = React.useState(0);
+  const { action } = useLocalSearchParams();
+  const [index, setIndex] = React.useState(Number(action));
   const [routes] = React.useState([
     { key: "first", title: "Regístrate" },
     { key: "second", title: "Iniciar Sesión" },
