@@ -36,7 +36,7 @@ const SquareCard = ({
         </Box>
         <Typography
           bold
-          type="overline"
+          type="label"
           align="center"
           numberOfLines={2}
           style={{ flexWrap: "wrap" }}
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
   },
   background: {
     left: 0,
-    height: "35%",
+    height: "25%",
     width: "100%",
     resizeMode: "contain",
     position: "absolute",

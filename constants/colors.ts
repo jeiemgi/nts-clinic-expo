@@ -3,7 +3,7 @@ const baseColors = {
   pureWhite: "#FFFFFF",
   orange: "#FF4E0D",
   black: "#1E1E1E",
-  "black-15": "rgba(30, 30, 30, 0.15)",
+  "black-15": "rgba(30, 30, 30, 0.20)",
   offWhite: "#F7F7F7",
 };
 

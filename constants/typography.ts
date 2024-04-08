@@ -1,5 +1,3 @@
-export type TypographyType = "h1" | "h2" | "h3" | "overline" | "default";
-
 export enum TypeFamily {
   "ManropeLight" = "Manrope-Light",
   "ManropeRegular" = "Manrope-Regular",

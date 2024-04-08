@@ -10,14 +10,14 @@ import { TypeFamily, TypographyType } from "@/constants/typography";
 interface Props {
   bold?: boolean;
   semiBold?: boolean;
-  type?: TypographyType;
+  type?: string;
   color?: ColorValue;
   themeColor?: keyof Omit<MD3Colors, "elevation">;
   align?: TextStyle["textAlign"];
 }
 
 type TypographyStylesDict = Record<
-  TypographyType,
+  string,
   {
     variant: MD3TypescaleKey;
     styles: TextStyle;
@@ -66,6 +66,19 @@ const typographyMaterialDict: TypographyStylesDict = {
     },
   },
   overline: {
+    variant: MD3TypescaleKey.labelSmall,
+    styles: {
+      fontSize: 10,
+      lineHeight: 12,
+      textTransform: "uppercase",
+    },
+    fonts: {
+      regular: TypeFamily.ManropeRegular,
+      semiBold: TypeFamily.ManropeSemiBold,
+      bold: TypeFamily.ManropeBold,
+    },
+  },
+  label: {
     variant: MD3TypescaleKey.labelSmall,
     styles: {
       fontSize: 10,
