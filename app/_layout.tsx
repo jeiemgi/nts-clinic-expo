@@ -18,6 +18,7 @@ import {
 } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import { ModalHeader } from "@/components/ModalHeader";
 import { SessionProvider } from "@/components/SessionProviderContext";
 import { themeFontConfig } from "@/constants/typography";
 import customDarkTheme from "@/dark-theme.json";
@@ -102,6 +103,13 @@ function RootLayoutNav() {
                 options={{ headerShown: false, gestureEnabled: false }}
               />
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen
+                name="food-modal"
+                options={{
+                  presentation: "modal",
+                  headerShown: false,
+                }}
+              />
             </Stack>
             <StatusBar />
           </ThemeProvider>

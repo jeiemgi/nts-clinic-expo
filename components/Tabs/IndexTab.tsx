@@ -1,19 +1,20 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React from "react";
-import { Image, ScrollView, StyleSheet, View } from "react-native";
 import {
-  Appbar,
-  Icon,
-  Surface,
-  TouchableRipple,
-  Searchbar,
-} from "react-native-paper";
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableHighlight,
+  View,
+} from "react-native";
+import { Appbar, Icon, Surface, TouchableRipple } from "react-native-paper";
 import { IconSource } from "react-native-paper/lib/typescript/components/Icon";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useSession } from "@/components";
 import Box from "@/components/Box";
+import Searchbar from "@/components/Searchbar";
 import Typography from "@/components/Typography";
 import Colors from "@/constants/colors";
 
@@ -75,7 +76,7 @@ const WelcomeHeader = () => {
 };
 
 const IndexTab = () => {
-  const [searchQuery, setSearchQuery] = React.useState("");
+  const router = useRouter();
 
   return (
     <View style={styles.container}>
@@ -123,13 +124,14 @@ const IndexTab = () => {
               onPress={() => console.log("Pressed")}
             >
               <Surface elevation={4} style={styles.card} mode="flat">
-                <Box flexDirection="row">
+                <Box flexDirection="row" alignItems="center">
                   <Box mr={4}>
                     <Icon source="calendar" color={Colors.black} size={24} />
                   </Box>
-                  <Typography bold type="h3">
+                  <Typography style={{ flex: 1 }} bold type="h3">
                     Próximas citas
                   </Typography>
+                  <Icon source="chevron-right" color={Colors.black} size={24} />
                 </Box>
               </Surface>
             </TouchableRipple>
@@ -163,14 +165,18 @@ const IndexTab = () => {
       </SafeAreaView>
 
       <View style={styles.searchContainer}>
-        <Searchbar
-          style={{
-            backgroundColor: Colors.screenBackgroundLight,
-          }}
-          placeholder="Search"
-          onChangeText={setSearchQuery}
-          value={searchQuery}
-        />
+        <TouchableHighlight
+          style={styles.touchableInput}
+          underlayColor={Colors.screenBackgroundDark}
+          onPress={() => router.navigate("food-modal")}
+        >
+          <Searchbar
+            readOnly
+            value=""
+            pointerEvents="none"
+            placeholder="Buscar un alimento"
+          />
+        </TouchableHighlight>
       </View>
     </View>
   );
@@ -180,6 +186,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.screenBackgroundLight,
+  },
+  touchableInput: {
+    borderRadius: 40,
+    overflow: "hidden",
   },
   cardPressable: {
     borderRadius: 12,

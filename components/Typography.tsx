@@ -5,16 +5,7 @@ import { MD3Colors } from "react-native-paper/lib/typescript/types";
 import { MD3TypescaleKey } from "react-native-paper/src/types";
 
 import Colors from "@/constants/colors";
-import { TypeFamily, TypographyType } from "@/constants/typography";
-
-interface Props {
-  bold?: boolean;
-  semiBold?: boolean;
-  type?: string;
-  color?: ColorValue;
-  themeColor?: keyof Omit<MD3Colors, "elevation">;
-  align?: TextStyle["textAlign"];
-}
+import { TypeFamily } from "@/constants/typography";
 
 type TypographyStylesDict = Record<
   string,
@@ -28,6 +19,7 @@ type TypographyStylesDict = Record<
     };
   }
 >;
+
 const typographyMaterialDict: TypographyStylesDict = {
   h1: {
     variant: MD3TypescaleKey.displayLarge,
@@ -90,6 +82,18 @@ const typographyMaterialDict: TypographyStylesDict = {
       bold: TypeFamily.ManropeBold,
     },
   },
+  caption: {
+    variant: MD3TypescaleKey.labelSmall,
+    styles: {
+      fontSize: 11,
+      lineHeight: 12,
+    },
+    fonts: {
+      regular: TypeFamily.ManropeRegular,
+      semiBold: TypeFamily.ManropeSemiBold,
+      bold: TypeFamily.ManropeBold,
+    },
+  },
   default: {
     variant: MD3TypescaleKey.bodyMedium,
     styles: {
@@ -102,6 +106,16 @@ const typographyMaterialDict: TypographyStylesDict = {
     },
   },
 };
+
+interface Props {
+  bold?: boolean;
+  semiBold?: boolean;
+  type?: string;
+  color?: ColorValue;
+  themeColor?: keyof Omit<MD3Colors, "elevation">;
+  align?: TextStyle["textAlign"];
+}
+
 const Typography = ({
   bold = false,
   semiBold = false,
