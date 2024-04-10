@@ -121,7 +121,7 @@ const IndexTab = () => {
 
             <TouchableRipple
               style={styles.cardPressable}
-              onPress={() => console.log("Pressed")}
+              onPress={() => router.navigate("appointments")}
             >
               <Surface elevation={4} style={styles.card} mode="flat">
                 <Box flexDirection="row" alignItems="center">

@@ -18,7 +18,7 @@ import {
 } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import { ModalHeader } from "@/components/ModalHeader";
+import AppHeader from "@/components/AppHeader";
 import { SessionProvider } from "@/components/SessionProviderContext";
 import { themeFontConfig } from "@/constants/typography";
 import customDarkTheme from "@/dark-theme.json";
@@ -93,7 +93,13 @@ function RootLayoutNav() {
           <ThemeProvider
             value={colorScheme === "dark" ? DarkTheme : LightTheme}
           >
-            <Stack initialRouteName="onboarding">
+            <Stack
+              initialRouteName="onboarding"
+              screenOptions={{
+                headerBackTitleVisible: false,
+                header: (props) => <AppHeader {...props} />,
+              }}
+            >
               <Stack.Screen
                 name="onboarding"
                 options={{ headerShown: false }}
@@ -104,10 +110,16 @@ function RootLayoutNav() {
               />
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               <Stack.Screen
+                name="(home)/notifications"
+                options={{
+                  title: "Notificaciones",
+                }}
+              />
+              <Stack.Screen
                 name="food-modal"
                 options={{
-                  presentation: "modal",
                   headerShown: false,
+                  presentation: "modal",
                 }}
               />
             </Stack>

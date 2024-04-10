@@ -3,6 +3,7 @@ import { Tabs } from "expo-router";
 import { Animated } from "react-native";
 import { BottomNavigation, Text, useTheme } from "react-native-paper";
 
+import { BottomTabHeader } from "@/components/AppHeader";
 import MaterialIcon from "@/components/MaterialIcon";
 import Colors from "@/constants/colors";
 
@@ -10,9 +11,7 @@ const RootTabs = () => {
   const theme = useTheme();
   return (
     <Tabs
-      screenOptions={{
-        headerShown: false,
-      }}
+      screenOptions={{ header: (props) => <BottomTabHeader {...props} /> }}
       tabBar={({ navigation, state, descriptors, insets }) => (
         <BottomNavigation.Bar
           activeColor={theme.colors.onPrimary}
@@ -82,6 +81,7 @@ const RootTabs = () => {
         name="index"
         options={{
           title: "Inicio",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <MaterialIcon name="home" color={color} size={size} />
           ),
@@ -109,6 +109,7 @@ const RootTabs = () => {
         name="homework"
         options={{
           title: "Tareas",
+          headerTitle: "Tareas mensuales",
           tabBarIcon: ({ color, size }) => (
             <MaterialIcon name="task" color={color} size={size} />
           ),
@@ -118,6 +119,7 @@ const RootTabs = () => {
         name="account"
         options={{
           title: "Mi cuenta",
+          headerTitle: "Perfil",
           tabBarIcon: ({ color, size }) => (
             <MaterialIcon name="account-circle" color={color} size={size} />
           ),

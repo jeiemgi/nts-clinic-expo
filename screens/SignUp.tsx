@@ -2,10 +2,10 @@ import { router } from "expo-router";
 import React from "react";
 import { TextInput } from "react-native-paper";
 
-import Button from "../components/Button";
-
-import { Screen, useSession } from "@/components";
+import Button from "@/components/Button";
 import PasswordInput from "@/components/PasswordInput";
+import Screen from "@/components/Screen";
+import { useSession } from "@/components/SessionProviderContext";
 
 function SignUp() {
   const { signIn } = useSession();

@@ -57,6 +57,18 @@ const typographyMaterialDict: TypographyStylesDict = {
       bold: TypeFamily.ManropeBold,
     },
   },
+  h4: {
+    variant: MD3TypescaleKey.displaySmall,
+    styles: {
+      fontSize: 17,
+      lineHeight: 20,
+    },
+    fonts: {
+      regular: TypeFamily.ManropeRegular,
+      semiBold: TypeFamily.ManropeSemiBold,
+      bold: TypeFamily.ManropeBold,
+    },
+  },
   overline: {
     variant: MD3TypescaleKey.labelSmall,
     styles: {

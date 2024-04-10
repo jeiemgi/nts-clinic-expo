@@ -1,3 +1,5 @@
+import hexToRgba from "hex-to-rgba";
+
 const baseColors = {
   pureBlack: "#000000",
   pureWhite: "#FFFFFF",
@@ -13,9 +15,15 @@ export default {
   white: baseColors.pureWhite,
   black: baseColors.black,
   primary: baseColors.orange,
+  primary30: hexToRgba(baseColors.orange, 0.3),
   text: baseColors.black,
   textGray: baseColors.gray,
   screenBackgroundDark: baseColors["black-15"],
   screenBackgroundLight: baseColors.offWhite,
   borderGrayLight: "#D2D2D2",
+  foodPrimary: baseColors.orange,
+  foodBlue: "#0071F5",
+  foodGreen: "#0CB431",
 };
+
+export { default as hexToRgba } from "hex-to-rgba";

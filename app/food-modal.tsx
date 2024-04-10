@@ -1,15 +1,16 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import {
   Platform,
   StyleSheet,
   KeyboardAvoidingView,
-  TouchableOpacityProps,
+  ScrollView,
 } from "react-native";
-import { Icon, TouchableRipple } from "react-native-paper";
+import { Icon } from "react-native-paper";
 import { IconSource } from "react-native-paper/lib/typescript/components/Icon";
 
 import Box from "@/components/Box";
+import CollapsibleView from "@/components/Collapsible";
 import IllustrationScreen from "@/components/IllustrationScreen";
 import Searchbar from "@/components/Searchbar";
 import Typography from "@/components/Typography";
@@ -17,50 +18,91 @@ import Colors from "@/constants/colors";
 
 const emptyImage = require("@/assets/images/illustrations/food-ilustration.png");
 
-interface SearchListItemProps extends Omit<TouchableOpacityProps, "children"> {
+interface SearchListItemProps {
   last?: boolean;
   title: string;
   subtitle: string;
-  iconSource: IconSource;
+  iconSource: string;
 }
+
+const FoodCategoryIcon = ({
+  icon,
+  color,
+}: {
+  icon: string;
+  color: keyof typeof Colors;
+}) => {
+  return (
+    <Box
+      alignItems="center"
+      justifyContent="center"
+      style={[styles.listItemIcon, { backgroundColor: Colors[color] }]}
+    >
+      <Typography
+        bold
+        color="white"
+        style={{ lineHeight: 0, textTransform: "uppercase" }}
+      >
+        {icon}
+      </Typography>
+    </Box>
+  );
+};
 const SearchListItem = ({
   last = false,
   title,
   subtitle,
   iconSource,
-  ...props
 }: SearchListItemProps) => {
-  return (
-    <TouchableRipple
-      style={[styles.listItem, { borderBottomWidth: last ? 0 : 1 }]}
-      {...props}
-    >
-      <>
-        <Box py={4} mr={4}>
-          <Icon size={35} color={Colors.black} source={iconSource} />
-        </Box>
-        <Box justifyContent="center" style={{ flex: 1 }}>
-          <Typography bold numberOfLines={1}>
-            {title}
-          </Typography>
-          <Typography type="caption">{subtitle}</Typography>
-        </Box>
+  const [collapsed, setCollapsed] = useState(true);
 
-        <Box
-          alignItems="center"
-          justifyContent="center"
-          style={styles.listItemIcon}
-        >
-          <Typography
-            bold
-            color={Colors.white}
-            style={styles.listItemIconLabel}
-          >
-            c
-          </Typography>
+  return (
+    <CollapsibleView
+      collapsed={collapsed}
+      toggle={() => setCollapsed(!collapsed)}
+      expandedHeight={156}
+      headerStyles={[styles.listItem]}
+      containerStyles={{
+        borderBottomWidth: last ? 0 : 1,
+        borderColor: Colors.borderGrayLight,
+      }}
+      renderHeader={() => (
+        <>
+          <Box py={4} mr={4}>
+            <Icon size={35} color={Colors.black} source={iconSource} />
+          </Box>
+
+          <Box justifyContent="center" style={{ flex: 1 }}>
+            <Typography bold numberOfLines={1}>
+              {title}
+            </Typography>
+            <Typography type="caption">{subtitle}</Typography>
+          </Box>
+          <FoodCategoryIcon icon="C" color="primary" />
+        </>
+      )}
+    >
+      <Box pl={16}>
+        <Box flexDirection="row" alignItems="center">
+          <Box mr={2} mb={2}>
+            <FoodCategoryIcon icon="c" color="foodPrimary" />
+          </Box>
+          <Typography numberOfLines={1}>Carbohidratos: 18 gr</Typography>
         </Box>
-      </>
-    </TouchableRipple>
+        <Box flexDirection="row" alignItems="center">
+          <Box mr={2} mb={2}>
+            <FoodCategoryIcon icon="p" color="foodBlue" />
+          </Box>
+          <Typography numberOfLines={1}>Proteína: 5 gr</Typography>
+        </Box>
+        <Box flexDirection="row" alignItems="center">
+          <Box mr={2}>
+            <FoodCategoryIcon icon="g" color="foodGreen" />
+          </Box>
+          <Typography numberOfLines={1}>Grasa: 2 gr </Typography>
+        </Box>
+      </Box>
+    </CollapsibleView>
   );
 };
 
@@ -89,39 +131,79 @@ export default function ModalScreen() {
           title="Busca tus alimentos favoritos y conoce su información nutricional."
         />
       ) : (
-        <Box px={4}>
-          <SearchListItem
-            iconSource="food-outline"
-            title="Tortilla de Maíz"
-            subtitle="Calorías XX"
-            onPress={() => console.log("Food info")}
-          />
-          <SearchListItem
-            iconSource="food-drumstick"
-            title="Pollo asado"
-            subtitle="Calorías XX"
-            onPress={() => console.log("Food info")}
-          />
-          <SearchListItem
-            iconSource="food-croissant"
-            title="Pan con mermelada"
-            subtitle="Calorías XX"
-            onPress={() => console.log("Food info")}
-          />
-          <SearchListItem
-            iconSource="noodles"
-            title="Sopa de fideos"
-            subtitle="Calorías XX"
-            onPress={() => console.log("Food info")}
-          />
-          <SearchListItem
-            last
-            iconSource="peanut-outline"
-            title="Cacahuates (20g)"
-            subtitle="Calorías XX"
-            onPress={() => console.log("Food info")}
-          />
-        </Box>
+        <ScrollView
+          keyboardDismissMode="on-drag"
+          contentContainerStyle={{ paddingBottom: 100 }}
+        >
+          <Box px={4}>
+            <SearchListItem
+              iconSource="food-outline"
+              title="Tortilla de Maíz"
+              subtitle="Calorías XX"
+            />
+            <SearchListItem
+              iconSource="food-drumstick"
+              title="Pollo asado"
+              subtitle="Calorías XX"
+            />
+            <SearchListItem
+              iconSource="food-croissant"
+              title="Pan con mermelada"
+              subtitle="Calorías XX"
+            />
+            <SearchListItem
+              iconSource="noodles"
+              title="Sopa de fideos"
+              subtitle="Calorías XX"
+            />
+            <SearchListItem
+              iconSource="peanut-outline"
+              title="Cacahuates (20g)"
+              subtitle="Calorías XX"
+            />
+            <SearchListItem
+              iconSource="food-drumstick"
+              title="Pollo asado"
+              subtitle="Calorías XX"
+            />
+            <SearchListItem
+              iconSource="peanut-outline"
+              title="Cacahuates (20g)"
+              subtitle="Calorías XX"
+            />
+            <SearchListItem
+              iconSource="food-drumstick"
+              title="Pollo asado"
+              subtitle="Calorías XX"
+            />
+            <SearchListItem
+              iconSource="peanut-outline"
+              title="Cacahuates (20g)"
+              subtitle="Calorías XX"
+            />
+            <SearchListItem
+              iconSource="food-drumstick"
+              title="Pollo asado"
+              subtitle="Calorías XX"
+            />
+            <SearchListItem
+              iconSource="peanut-outline"
+              title="Cacahuates (20g)"
+              subtitle="Calorías XX"
+            />
+            <SearchListItem
+              iconSource="peanut-outline"
+              title="Cacahuates (20g)"
+              subtitle="Calorías XX"
+            />
+            <SearchListItem
+              last
+              iconSource="peanut-outline"
+              title="Cacahuates (20g)"
+              subtitle="Calorías XX"
+            />
+          </Box>
+        </ScrollView>
       )}
     </KeyboardAvoidingView>
   );
@@ -134,10 +216,8 @@ const styles = StyleSheet.create({
   listItem: {
     alignItems: "center",
     flexDirection: "row",
-    borderBottomWidth: 1,
     paddingVertical: 4,
     paddingHorizontal: 16,
-    borderColor: Colors.borderGrayLight,
   },
   listItemIcon: {
     width: 40,
