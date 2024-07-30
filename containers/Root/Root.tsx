@@ -7,7 +7,7 @@ import { BottomTabHeader } from "@/components/AppHeader";
 import MaterialIcon from "@/components/MaterialIcon";
 import Colors from "@/constants/colors";
 
-const RootTabs = () => {
+const Root = () => {
   const theme = useTheme();
   return (
     <Tabs
@@ -129,4 +129,4 @@ const RootTabs = () => {
   );
 };
 
-export default RootTabs;
+export default Root;

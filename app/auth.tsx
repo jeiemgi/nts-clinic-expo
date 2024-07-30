@@ -1,16 +1,8 @@
-import { useGlobalSearchParams, useLocalSearchParams } from "expo-router";
 import React from "react";
+import { useLocalSearchParams } from "expo-router";
 import { StyleSheet, useWindowDimensions, View } from "react-native";
-import { useTheme } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {
-  TabView,
-  SceneMap,
-  SceneRendererProps,
-  TabBar,
-  Route,
-  NavigationState,
-} from "react-native-tab-view";
+import { TabView, SceneMap } from "react-native-tab-view";
 
 import ThemedTabView from "@/components/ThemedTabView";
 import Login from "@/screens/Login";

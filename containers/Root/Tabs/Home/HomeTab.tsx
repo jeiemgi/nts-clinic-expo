@@ -1,81 +1,17 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import React from "react";
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  TouchableHighlight,
-  View,
-} from "react-native";
-import { Appbar, Icon, Surface, TouchableRipple } from "react-native-paper";
-import { IconSource } from "react-native-paper/lib/typescript/components/Icon";
+import { ScrollView, StyleSheet, TouchableHighlight, View } from "react-native";
+import { Icon, Surface, TouchableRipple } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { useSession } from "@/components";
 import Box from "@/components/Box";
 import Searchbar from "@/components/Searchbar";
 import Typography from "@/components/Typography";
 import Colors from "@/constants/colors";
+import HomeHeader from "@/containers/Root/Tabs/Home/HomeHeader";
+import SquareCard from "@/containers/Root/Tabs/Home/HomeSquareCard";
 
-const NTSLogo = require("@/assets/images/nts-logo.png");
-
-const SquareCard = ({
-  onPress,
-  label,
-  icon,
-}: {
-  onPress: () => void;
-  label: React.ReactNode;
-  icon: IconSource;
-}) => {
-  return (
-    <TouchableRipple style={styles.cardPressableSquare} onPress={onPress}>
-      <Surface elevation={4} style={styles.cardSquare} mode="flat">
-        <Box mb={3} alignItems="center">
-          <Icon source={icon} color={Colors.primary} size={32} />
-        </Box>
-        <Typography
-          bold
-          type="label"
-          align="center"
-          numberOfLines={2}
-          style={{ flexWrap: "wrap" }}
-        >
-          {label}
-        </Typography>
-      </Surface>
-    </TouchableRipple>
-  );
-};
-
-const WelcomeHeader = () => {
-  const router = useRouter();
-  const { signOut } = useSession();
-  return (
-    <View style={styles.header}>
-      <Image source={NTSLogo} style={styles.logo} />
-      <Appbar.Header
-        statusBarHeight={0}
-        style={{ backgroundColor: "transparent" }}
-      >
-        <Appbar.Action
-          icon="logout"
-          onPress={() => {
-            signOut();
-            router.navigate("/");
-          }}
-        />
-        <Appbar.Action
-          icon="bell-outline"
-          onPress={() => router.navigate("/notifications")}
-        />
-      </Appbar.Header>
-    </View>
-  );
-};
-
-const IndexTab = () => {
+const HomeTab = () => {
   const router = useRouter();
 
   return (
@@ -86,7 +22,7 @@ const IndexTab = () => {
       />
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={{ flex: 1, paddingBottom: 300 }}>
-          <WelcomeHeader />
+          <HomeHeader />
 
           <Box px={4} mb={4}>
             <Typography type="h1">Hola, Jorge</Typography>
@@ -226,26 +162,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     opacity: 0.2,
   },
-  logo: {
-    width: 72,
-    height: 32,
-    resizeMode: "contain",
-    tintColor: Colors.black,
-  },
   background: {
     left: 0,
     height: "25%",
     width: "100%",
     resizeMode: "contain",
     position: "absolute",
-  },
-  header: {
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexDirection: "row",
-    paddingHorizontal: 16,
-    height: 60,
-    marginBottom: 16,
   },
   searchContainer: {
     borderTopLeftRadius: 24,
@@ -257,4 +179,5 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
   },
 });
-export default IndexTab;
+
+export default HomeTab;

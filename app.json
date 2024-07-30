@@ -16,7 +16,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ntsclinic.expo"
     },
     "android": {
       "adaptiveIcon": {
@@ -35,6 +36,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "680f54aa-2549-4bc2-ae3d-76545b30ceac"
+      }
     }
   }
 }
