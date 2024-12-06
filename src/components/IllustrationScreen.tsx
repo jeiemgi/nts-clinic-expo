@@ -2,7 +2,7 @@ import { Image, KeyboardAvoidingView, StyleSheet } from "react-native";
 
 import Box from "@/components/Box";
 import Typography from "@/components/Typography";
-import Colors from "@/constants/colors";
+import { colors } from "@/theme/colors";
 
 const IllustrationScreen = ({
   title,
@@ -14,7 +14,7 @@ const IllustrationScreen = ({
   return (
     <KeyboardAvoidingView behavior="height" style={s.container}>
       <Box px={8} mb={5}>
-        <Typography color={Colors.textGray} align="center">
+        <Typography color={colors.textGray} align="center">
           {title}
         </Typography>
       </Box>

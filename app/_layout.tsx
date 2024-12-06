@@ -1,6 +1,6 @@
 import {
-  DefaultTheme as NavigationLightTheme,
   DarkTheme as NavigationDarkTheme,
+  DefaultTheme as NavigationLightTheme,
   ThemeProvider,
 } from "@react-navigation/native";
 import dayjs from "dayjs";
@@ -20,13 +20,13 @@ import {
 } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import customDarkTheme from "../dark-theme.json";
+import customLightTheme from "../light-theme.json";
+
 import AppHeader from "@/components/AppHeader";
 import { SessionProvider } from "@/components/SessionProviderContext";
-import { themeFontConfig } from "@/constants/typography";
-import customDarkTheme from "@/dark-theme.json";
+import { themeFontConfig } from "@/theme/typography";
 import "dayjs/locale/es-mx";
-
-import customLightTheme from "@/light-theme.json";
 
 dayjs.extend(customParseFormat);
 

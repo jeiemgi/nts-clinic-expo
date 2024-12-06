@@ -4,7 +4,7 @@ import { IconSource } from "react-native-paper/lib/typescript/components/Icon";
 
 import Box from "@/components/Box";
 import Typography from "@/components/Typography";
-import Colors from "@/constants/colors";
+import { colors } from "@/theme/colors";
 
 const SquareCard = ({
   onPress,
@@ -19,7 +19,7 @@ const SquareCard = ({
     <TouchableRipple style={styles.cardPressableSquare} onPress={onPress}>
       <Surface elevation={4} style={styles.cardSquare} mode="flat">
         <Box mb={3} alignItems="center">
-          <Icon source={icon} color={Colors.primary} size={32} />
+          <Icon source={icon} color={colors.primary} size={32} />
         </Box>
         <Typography
           bold
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 18,
     paddingHorizontal: 16,
-    backgroundColor: Colors.white,
+    backgroundColor: colors.white,
   },
 });
 

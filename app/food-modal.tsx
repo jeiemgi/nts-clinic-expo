@@ -1,22 +1,19 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
-  Platform,
-  StyleSheet,
   KeyboardAvoidingView,
+  Platform,
   ScrollView,
+  StyleSheet,
 } from "react-native";
 import { Icon } from "react-native-paper";
-import { IconSource } from "react-native-paper/lib/typescript/components/Icon";
 
 import Box from "@/components/Box";
 import CollapsibleView from "@/components/Collapsible";
 import IllustrationScreen from "@/components/IllustrationScreen";
 import Searchbar from "@/components/Searchbar";
 import Typography from "@/components/Typography";
-import Colors from "@/constants/colors";
-
-const emptyImage = require("@/assets/images/illustrations/food-ilustration.png");
+import { colors, ThemeColors } from "@/theme/colors";
 
 interface SearchListItemProps {
   last?: boolean;
@@ -27,16 +24,16 @@ interface SearchListItemProps {
 
 const FoodCategoryIcon = ({
   icon,
-  color,
+  color: colorName,
 }: {
   icon: string;
-  color: keyof typeof Colors;
+  color: ThemeColors;
 }) => {
   return (
     <Box
       alignItems="center"
       justifyContent="center"
-      style={[styles.listItemIcon, { backgroundColor: Colors[color] }]}
+      style={[styles.listItemIcon, { backgroundColor: colors[colorName] }]}
     >
       <Typography
         bold
@@ -64,12 +61,12 @@ const SearchListItem = ({
       headerStyles={[styles.listItem]}
       containerStyles={{
         borderBottomWidth: last ? 0 : 1,
-        borderColor: Colors.borderGrayLight,
+        borderColor: colors.borderGrayLight,
       }}
       renderHeader={() => (
         <>
           <Box py={4} mr={4}>
-            <Icon size={35} color={Colors.black} source={iconSource} />
+            <Icon size={35} color={colors.black} source={iconSource} />
           </Box>
 
           <Box justifyContent="center" style={{ flex: 1 }}>
@@ -117,7 +114,7 @@ export default function ModalScreen() {
         <Searchbar
           autoFocus
           style={{
-            backgroundColor: Colors.screenBackgroundLight,
+            backgroundColor: colors.screenBackgroundLight,
           }}
           placeholder="Buscar un alimento"
           onChangeText={setSearchQuery}
@@ -127,7 +124,7 @@ export default function ModalScreen() {
 
       {searchQuery === "" ? (
         <IllustrationScreen
-          imageSrc={emptyImage}
+          imageSrc={require("../assets/images/illustrations/food-ilustration.png")}
           title="Busca tus alimentos favoritos y conoce su información nutricional."
         />
       ) : (
@@ -223,7 +220,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 100,
-    backgroundColor: Colors.primary,
+    backgroundColor: colors.primary,
   },
   listItemIconLabel: {
     lineHeight: 0,

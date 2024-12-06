@@ -7,9 +7,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Box from "@/components/Box";
 import Searchbar from "@/components/Searchbar";
 import Typography from "@/components/Typography";
-import Colors from "@/constants/colors";
 import HomeHeader from "@/containers/Root/Tabs/Home/HomeHeader";
 import SquareCard from "@/containers/Root/Tabs/Home/HomeSquareCard";
+import { colors } from "@/theme/colors";
 
 const HomeTab = () => {
   const router = useRouter();
@@ -18,7 +18,7 @@ const HomeTab = () => {
     <View style={styles.container}>
       <LinearGradient
         style={[styles.background]}
-        colors={[Colors.screenBackgroundDark, "transparent"]}
+        colors={[colors.screenBackgroundDark, "transparent"]}
       />
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={{ flex: 1, paddingBottom: 300 }}>
@@ -35,11 +35,11 @@ const HomeTab = () => {
               onPress={() => console.log("Pressed")}
             >
               <Surface
-                style={[styles.card, { backgroundColor: Colors.primary }]}
+                style={[styles.card, { backgroundColor: colors.primary }]}
                 mode="flat"
               >
                 <View style={styles.cardIcon}>
-                  <Icon source="fire" color={Colors.white} size={56} />
+                  <Icon source="fire" color={colors.white} size={56} />
                 </View>
                 <Box my={3}>
                   <Typography color="white" type="overline">
@@ -62,12 +62,12 @@ const HomeTab = () => {
               <Surface elevation={4} style={styles.card} mode="flat">
                 <Box flexDirection="row" alignItems="center">
                   <Box mr={4}>
-                    <Icon source="calendar" color={Colors.black} size={24} />
+                    <Icon source="calendar" color={colors.black} size={24} />
                   </Box>
                   <Typography style={{ flex: 1 }} bold type="h3">
                     Próximas citas
                   </Typography>
-                  <Icon source="chevron-right" color={Colors.black} size={24} />
+                  <Icon source="chevron-right" color={colors.black} size={24} />
                 </Box>
               </Surface>
             </TouchableRipple>
@@ -103,7 +103,7 @@ const HomeTab = () => {
       <View style={styles.searchContainer}>
         <TouchableHighlight
           style={styles.touchableInput}
-          underlayColor={Colors.screenBackgroundDark}
+          underlayColor={colors.screenBackgroundDark}
           onPress={() => router.navigate("food-modal")}
         >
           <Searchbar
@@ -121,7 +121,7 @@ const HomeTab = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.screenBackgroundLight,
+    backgroundColor: colors.screenBackgroundLight,
   },
   touchableInput: {
     borderRadius: 40,
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 18,
     paddingHorizontal: 16,
-    backgroundColor: Colors.white,
+    backgroundColor: colors.white,
   },
   cardSquare: {
     alignItems: "center",
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 18,
     paddingHorizontal: 16,
-    backgroundColor: Colors.white,
+    backgroundColor: colors.white,
   },
 
   cardIcon: {
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: "100%",
     padding: 16,
-    backgroundColor: Colors.white,
+    backgroundColor: colors.white,
   },
 });
 

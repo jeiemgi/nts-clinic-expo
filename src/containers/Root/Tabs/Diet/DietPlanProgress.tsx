@@ -3,11 +3,11 @@ import { BarChart, PieChart } from "react-native-gifted-charts";
 
 import Box from "@/components/Box";
 import Typography from "@/components/Typography";
-import Colors from "@/constants/colors";
+import { colors } from "@/theme/colors";
 
 const data = [
-  { value: 50, color: Colors.primary },
-  { value: 100, color: Colors.primary30 },
+  { value: 50, color: colors.primary },
+  { value: 100, color: colors.primary30 },
 ];
 
 const DietPlanProgress = () => {
@@ -16,7 +16,7 @@ const DietPlanProgress = () => {
       style={{
         flex: 1,
         paddingVertical: 24,
-        backgroundColor: Colors.screenBackgroundDark,
+        backgroundColor: colors.screenBackgroundDark,
       }}
     >
       <Box px={4}>

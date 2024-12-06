@@ -3,7 +3,7 @@ import { CommonActions } from "@react-navigation/native";
 import { Animated } from "react-native";
 import { BottomNavigation, Text, useTheme } from "react-native-paper";
 
-import Colors from "@/constants/colors";
+import { colors } from "@/theme/colors";
 
 const RootBottomNavigation = ({
   state,
@@ -19,7 +19,7 @@ const RootBottomNavigation = ({
       activeIndicatorStyle={{ backgroundColor: theme.colors.primary }}
       navigationState={state}
       safeAreaInsets={insets}
-      style={{ backgroundColor: Colors.white }}
+      style={{ backgroundColor: colors.white }}
       renderLabel={({ focused, route }) => {
         const { options } = descriptors[route.key];
         return (

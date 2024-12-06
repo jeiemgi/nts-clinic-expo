@@ -1,13 +1,13 @@
 import React, { forwardRef } from "react";
 import { Button as DefaultButton, ButtonProps } from "react-native-paper";
 
-import Colors from "@/constants/colors";
-import { TypeFamily } from "@/constants/typography";
+import { colors } from "@/theme/colors";
+import { TypeFamily } from "@/theme/typography";
 
 // @ts-ignore
 const ThemedButton = forwardRef<DefaultButton, ButtonProps>(
   ({ mode, ...props }, ref) => {
-    const labelColorStyle = mode === "outlined" ? { color: Colors.black } : {};
+    const labelColorStyle = mode === "outlined" ? { color: colors.black } : {};
 
     return (
       <DefaultButton
@@ -16,7 +16,7 @@ const ThemedButton = forwardRef<DefaultButton, ButtonProps>(
         {...props}
         theme={{
           colors: {
-            outline: Colors.black,
+            outline: colors.black,
           },
         }}
         style={{

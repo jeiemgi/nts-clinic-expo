@@ -2,7 +2,7 @@ import { BottomTabHeaderProps } from "@react-navigation/bottom-tabs";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import { Appbar } from "react-native-paper";
 
-import Colors from "@/constants/colors";
+import { colors } from "@/theme/colors";
 
 const AppHeader = ({
   back,
@@ -11,7 +11,7 @@ const AppHeader = ({
   options,
 }: NativeStackHeaderProps) => {
   return (
-    <Appbar.Header mode="small" style={{ backgroundColor: Colors.white }}>
+    <Appbar.Header mode="small" style={{ backgroundColor: colors.white }}>
       {back ? <Appbar.BackAction onPress={() => navigation.goBack()} /> : null}
       <Appbar.Content title={options.title} />
     </Appbar.Header>
@@ -20,7 +20,7 @@ const AppHeader = ({
 
 export const BottomTabHeader = ({ options }: BottomTabHeaderProps) => {
   return (
-    <Appbar.Header mode="small" style={{ backgroundColor: Colors.white }}>
+    <Appbar.Header mode="small" style={{ backgroundColor: colors.white }}>
       <Appbar.Content title={options.title} />
     </Appbar.Header>
   );

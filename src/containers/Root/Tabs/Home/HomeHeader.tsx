@@ -3,9 +3,9 @@ import { Image, View, StyleSheet } from "react-native";
 import { Appbar } from "react-native-paper";
 
 import { useSession } from "@/components";
-import Colors from "@/constants/colors";
+import { colors } from "@/theme/colors";
 
-const NTSLogo = require("@/assets/images/nts-logo.png");
+const NTSLogo = require("../../../../../assets/images/nts-logo.png");
 
 const WelcomeHeader = () => {
   const router = useRouter();
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     width: 72,
     height: 32,
     resizeMode: "contain",
-    tintColor: Colors.black,
+    tintColor: colors.black,
   },
 
   header: {

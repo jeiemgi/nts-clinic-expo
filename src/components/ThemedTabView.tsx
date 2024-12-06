@@ -7,7 +7,7 @@ import {
 } from "react-native-tab-view";
 
 import Typography from "@/components/Typography";
-import Colors from "@/constants/colors";
+import { colors } from "@/theme/colors";
 
 const ThemedTabView = (
   props: SceneRendererProps & {
@@ -17,9 +17,9 @@ const ThemedTabView = (
   return (
     <TabBar
       {...props}
-      activeColor={Colors.primary}
+      activeColor={colors.primary}
       style={{
-        backgroundColor: Colors.white,
+        backgroundColor: colors.white,
         overflow: "hidden",
       }}
       renderLabel={(props) => (
@@ -27,7 +27,7 @@ const ThemedTabView = (
           bold
           numberOfLines={1}
           ellipsizeMode="head"
-          color={props.focused ? props.color : Colors.text}
+          color={props.focused ? props.color : colors.text}
         >
           {props.route.title}
         </Typography>
@@ -35,14 +35,14 @@ const ThemedTabView = (
       contentContainerStyle={{ paddingVertical: 14 }}
       indicatorContainerStyle={{
         borderBottomWidth: 1,
-        borderBottomColor: Colors.borderGrayLight,
+        borderBottomColor: colors.borderGrayLight,
       }}
       indicatorStyle={{
         height: 5,
         bottom: 0,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
-        backgroundColor: Colors.primary,
+        backgroundColor: colors.primary,
       }}
     />
   );

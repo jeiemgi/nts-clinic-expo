@@ -25,3 +25,5 @@ export const colors = {
   foodBlue: "#0071F5",
   foodGreen: "#0CB431",
 };
+
+export type ThemeColors = keyof typeof colors;

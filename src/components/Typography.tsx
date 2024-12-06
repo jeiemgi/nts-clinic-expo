@@ -131,7 +131,7 @@ const Typography = ({
   bold = false,
   semiBold = false,
   type = "default",
-  color = Colors.black,
+  color = colors.black,
   themeColor,
   align = "left",
   style,

@@ -14,13 +14,11 @@ import PagerView, {
 import { useTheme } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-// @ts-ignore
-import onboarding from "@/assets/images/on-boarding-bg.jpg";
 import { Button, MaterialIcon } from "@/components";
 import Box from "@/components/Box";
 import Typography from "@/components/Typography";
-import Colors from "@/constants/colors";
 import NTSLogo from "@/svg/NTSLogo";
+import { colors } from "@/theme/colors";
 
 function BulletList({ label }: { label: string }) {
   return (
@@ -31,7 +29,7 @@ function BulletList({ label }: { label: string }) {
       }}
     >
       <View style={{ marginRight: 12 }}>
-        <MaterialIcon color={Colors.black} size={20} name="check" />
+        <MaterialIcon color={colors.black} size={20} name="check" />
       </View>
       <Typography style={{ flex: 1, flexWrap: "wrap" }}>{label}</Typography>
     </View>
@@ -44,7 +42,7 @@ const SlideOne = () => {
   return (
     <ImageBackground
       style={styles.container}
-      source={onboarding}
+      source={require("../../assets/images/on-boarding-bg.jpg")}
       resizeMode="cover"
     >
       <SafeAreaView style={{ flex: 1 }}>
@@ -79,7 +77,7 @@ const SlideTwo = () => {
     <View style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
         <Box alignItems="center" my={20}>
-          <NTSLogo fill={Colors.black} />
+          <NTSLogo fill={colors.black} />
         </Box>
 
         <Box mb={12} px={4}>
@@ -104,7 +102,7 @@ const SlideThree = () => {
     <View style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
         <Box alignItems="center" my={20}>
-          <NTSLogo fill={Colors.black} />
+          <NTSLogo fill={colors.black} />
         </Box>
 
         <Box mb={12} px={4}>

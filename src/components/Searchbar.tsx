@@ -1,7 +1,7 @@
 import React from "react";
 import { Searchbar as RNPSearchbar, SearchbarProps } from "react-native-paper";
 
-import Colors from "@/constants/colors";
+import { colors } from "@/theme/colors";
 
 const Searchbar = ({ style, ...props }: SearchbarProps) => {
   return (
@@ -10,7 +10,7 @@ const Searchbar = ({ style, ...props }: SearchbarProps) => {
       style={[
         {
           borderRadius: 40,
-          backgroundColor: Colors.screenBackgroundLight,
+          backgroundColor: colors.screenBackgroundLight,
         },
         style,
       ]}

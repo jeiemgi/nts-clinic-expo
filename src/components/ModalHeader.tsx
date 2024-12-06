@@ -2,7 +2,7 @@ import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import { View } from "react-native";
 import { Icon } from "react-native-paper";
 
-import Colors from "@/constants/colors";
+import { colors } from "@/theme/colors";
 
 export const ModalHeader = ({
   title,
@@ -13,7 +13,7 @@ export const ModalHeader = ({
       style={{
         width: "100%",
         alignItems: "center",
-        backgroundColor: Colors.white,
+        backgroundColor: colors.white,
       }}
     >
       <Icon size={35} source="drag-horizontal" />

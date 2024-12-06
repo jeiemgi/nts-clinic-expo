@@ -1,9 +1,9 @@
 import * as React from "react";
 import Svg, { G, Path, SvgProps } from "react-native-svg";
 
-import Colors from "@/constants/colors";
+import { colors } from "@/theme/colors";
 
-function NTSLogo({ fill = Colors.black, ...props }: SvgProps) {
+function NTSLogo({ fill = colors.black, ...props }: SvgProps) {
   return (
     <Svg width={149} height={64} fill="none" {...props}>
       <G fill={fill} clipPath="url(#a)">

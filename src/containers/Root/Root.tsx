@@ -5,7 +5,7 @@ import { BottomNavigation, Text, useTheme } from "react-native-paper";
 
 import { BottomTabHeader } from "@/components/AppHeader";
 import MaterialIcon from "@/components/MaterialIcon";
-import Colors from "@/constants/colors";
+import { colors } from "@/theme/colors";
 
 const Root = () => {
   const theme = useTheme();
@@ -18,7 +18,7 @@ const Root = () => {
           activeIndicatorStyle={{ backgroundColor: theme.colors.primary }}
           navigationState={state}
           safeAreaInsets={insets}
-          style={{ backgroundColor: Colors.white }}
+          style={{ backgroundColor: colors.white }}
           renderLabel={({ focused, route }) => {
             const { options } = descriptors[route.key];
             return (
