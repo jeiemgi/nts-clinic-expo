@@ -64,15 +64,12 @@ const Root = () => {
           }}
           getLabelText={({ route }) => {
             const { options } = descriptors[route.key];
-            const label =
-              options.tabBarLabel !== undefined
-                ? options.tabBarLabel
-                : options.title !== undefined
-                  ? options.title
-                  : // @ts-ignore
-                    route.title;
-
-            return label;
+            return options.tabBarLabel !== undefined
+              ? options.tabBarLabel
+              : options.title !== undefined
+                ? options.title
+                : // @ts-ignore
+                  route.title;
           }}
         />
       )}

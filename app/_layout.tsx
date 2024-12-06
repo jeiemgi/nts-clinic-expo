@@ -3,6 +3,8 @@ import {
   DarkTheme as NavigationDarkTheme,
   ThemeProvider,
 } from "@react-navigation/native";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -22,7 +24,11 @@ import AppHeader from "@/components/AppHeader";
 import { SessionProvider } from "@/components/SessionProviderContext";
 import { themeFontConfig } from "@/constants/typography";
 import customDarkTheme from "@/dark-theme.json";
+import "dayjs/locale/es-mx";
+
 import customLightTheme from "@/light-theme.json";
+
+dayjs.extend(customParseFormat);
 
 export {
   // Catch any errors thrown by the Layout component.

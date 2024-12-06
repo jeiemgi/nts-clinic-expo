@@ -10,7 +10,7 @@ const baseColors = {
   gray: "#626262",
 };
 
-export default {
+export const colors = {
   transparent: "transparent",
   white: baseColors.pureWhite,
   black: baseColors.black,
@@ -25,5 +25,3 @@ export default {
   foodBlue: "#0071F5",
   foodGreen: "#0CB431",
 };
-
-export { default as hexToRgba } from "hex-to-rgba";

@@ -4,8 +4,7 @@ import { Text, useTheme } from "react-native-paper";
 import { MD3Colors } from "react-native-paper/lib/typescript/types";
 import { MD3TypescaleKey } from "react-native-paper/src/types";
 
-import Colors from "@/constants/colors";
-import { TypeFamily } from "@/constants/typography";
+import { TypeFamily, colors } from "@/theme";
 
 type TypographyStylesDict = Record<
   string,
